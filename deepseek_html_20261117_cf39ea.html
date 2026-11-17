@@ -1,0 +1,2962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4F46E5">
+  <title>Purposive Communication: Endless Quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & THEME SYSTEM
+       ========================================================================== */
+    :root {
+      --bg: #F3F5FA;
+      --bg-dot: rgba(79, 70, 229, 0.085);
+      --bg-glow: rgba(99, 102, 241, 0.11);
+      --card: #FFFFFF;
+      --card-sub: #F8FAFC;
+      --card-hover: #F1F5F9;
+      --ink: #0F172A;
+      --ink-2: #334155;
+      --mut: #64748B;
+      --pri: #4F46E5;
+      --pri-dark: #3730A3;
+      --pri-soft: rgba(79, 70, 229, 0.10);
+      --onp: #FFFFFF;
+      --line: #E2E8F0;
+      --line-strong: #CBD5E1;
+      --ok: #059669;
+      --ok-dark: #047857;
+      --okbg: #ECFDF5;
+      --ok-line: #A7F3D0;
+      --bad: #E11D48;
+      --bad-dark: #BE123C;
+      --badbg: #FFF1F2;
+      --bad-line: #FECDD3;
+      --warn: #D97706;
+      --warnbg: #FFFBEB;
+      --gold: #F59E0B;
+      --silver: #94A3B8;
+      --bronze: #D97706;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 10px 26px rgba(15, 23, 42, 0.08);
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      color-scheme: light;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0B0F19;
+        --bg-dot: rgba(129, 140, 248, 0.085);
+        --bg-glow: rgba(99, 102, 241, 0.15);
+        --card: #13192B;
+        --card-sub: #1A2238;
+        --card-hover: #212B46;
+        --ink: #F8FAFC;
+        --ink-2: #CBD5E1;
+        --mut: #94A3B8;
+        --pri: #818CF8;
+        --pri-dark: #4F46E5;
+        --pri-soft: rgba(129, 140, 248, 0.15);
+        --onp: #0B0F19;
+        --line: #24304D;
+        --line-strong: #334166;
+        --ok: #34D399;
+        --ok-dark: #059669;
+        --okbg: #062E22;
+        --ok-line: #065F46;
+        --bad: #FB7185;
+        --bad-dark: #E11D48;
+        --badbg: #350D18;
+        --bad-line: #881337;
+        --warn: #FBBF24;
+        --warnbg: #332206;
+        --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+        --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.38);
+        color-scheme: dark;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0B0F19;
+      --bg-dot: rgba(129, 140, 248, 0.085);
+      --bg-glow: rgba(99, 102, 241, 0.15);
+      --card: #13192B;
+      --card-sub: #1A2238;
+      --card-hover: #212B46;
+      --ink: #F8FAFC;
+      --ink-2: #CBD5E1;
+      --mut: #94A3B8;
+      --pri: #818CF8;
+      --pri-dark: #4F46E5;
+      --pri-soft: rgba(129, 140, 248, 0.15);
+      --onp: #0B0F19;
+      --line: #24304D;
+      --line-strong: #334166;
+      --ok: #34D399;
+      --ok-dark: #059669;
+      --okbg: #062E22;
+      --ok-line: #065F46;
+      --bad: #FB7185;
+      --bad-dark: #E11D48;
+      --badbg: #350D18;
+      --bad-line: #881337;
+      --warn: #FBBF24;
+      --warnbg: #332206;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.38);
+      color-scheme: dark;
+    }
+
+    /* ==========================================================================
+       2. BASE, TYPOGRAPHY & CANVAS
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px);
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 50% -12%, var(--bg-glow) 0%, transparent 56%),
+        radial-gradient(var(--bg-dot) 1.5px, transparent 1.5px);
+      background-size: 100% 100%, 24px 24px;
+      color: var(--ink);
+      font: 500 15.5px/1.55 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    #fx-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    #app {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 18px 16px 72px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(24px, 6.2vw, 42px); font-weight: 700; }
+    h2 { font-size: clamp(20px, 4.5vw, 26px); font-weight: 700; }
+    h3 { font-size: 16px; font-weight: 700; }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .m { color: var(--mut); }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      color: inherit;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    button:focus-visible, input:focus-visible {
+      outline: 3px solid var(--pri);
+      outline-offset: 2px;
+    }
+
+    svg.ico {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* ==========================================================================
+       3. KEYFRAME ANIMATIONS
+       ========================================================================== */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px) scale(0.988); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+
+    @keyframes shakeX {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    @keyframes floatGain {
+      0% { opacity: 0; transform: translateY(6px) scale(0.8); }
+      25% { opacity: 1; transform: translateY(-10px) scale(1.08); }
+      100% { opacity: 0; transform: translateY(-28px) scale(1); }
+    }
+
+    @keyframes pulseCrit {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.45; }
+    }
+
+    .anim-in {
+      animation: slideUp 0.3s var(--ease) both;
+    }
+
+    /* ==========================================================================
+       4. TOP NAVIGATION BAR
+       ========================================================================== */
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 20px;
+      padding: 8px 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .top-left, .top-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .who {
+      background: var(--card-sub);
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      padding: 5px 11px 5px 7px;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      transition: transform 0.18s var(--spring), border-color 0.2s ease;
+    }
+
+    .who:hover {
+      border-color: var(--c, var(--pri));
+      transform: translateY(-1px);
+    }
+
+    .who-av {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: var(--c, var(--pri));
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .who small {
+      color: var(--mut);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--card);
+      padding: 2px 7px;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      gap: 4px;
+      background: var(--card-sub);
+      padding: 4px;
+      border-radius: 14px;
+      border: 1.5px solid var(--line);
+    }
+
+    nav button {
+      background: transparent;
+      border: 0;
+      padding: 6px 13px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--mut);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s var(--ease);
+    }
+
+    nav button:hover:not(.on) {
+      color: var(--ink);
+      background: var(--card-hover);
+    }
+
+    nav button.on {
+      background: var(--pri);
+      color: var(--onp);
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.28);
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: var(--card-sub);
+      border: 1.5px solid var(--line);
+      color: var(--ink-2);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform 0.16s var(--spring), border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-1.5px);
+      border-color: var(--pri);
+      color: var(--pri);
+    }
+
+    .icon-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* ==========================================================================
+       5. PLAYER SELECTION SCREEN
+       ========================================================================== */
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--pri);
+      box-shadow: var(--shadow-sm);
+      min-width: 0;
+    }
+
+    .hero-head {
+      text-align: center;
+      max-width: 560px;
+      margin: 8px auto 22px;
+    }
+
+    .hero-head h1 span {
+      color: var(--pri);
+    }
+
+    #intro-quote {
+      margin: 12px auto 0;
+      font-size: clamp(14px, 3.6vw, 15.5px);
+      line-height: 1.5;
+      color: var(--mut);
+      font-style: italic;
+      max-width: 460px;
+      min-height: 3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    #intro-quote.fade {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+
+    .g2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 20px 0 22px;
+    }
+
+    .pl {
+      position: relative;
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 22px;
+      padding: 20px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 5px 0 var(--line-strong), var(--shadow-md);
+      transition: transform 0.2s var(--spring), box-shadow 0.2s var(--spring), border-color 0.2s ease;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .pl::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 54px;
+      background: var(--c);
+      opacity: 0.11;
+      pointer-events: none;
+    }
+
+    .pl:hover {
+      transform: translateY(-4px);
+      border-color: var(--c);
+      box-shadow: 0 8px 0 var(--c), var(--shadow-md);
+    }
+
+    .pl:hover .av {
+      animation: floatBadge 1.8s ease-in-out infinite;
+    }
+
+    .pl:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 var(--c);
+    }
+
+    .av {
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      background: var(--c);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 5px 0 rgba(0, 0, 0, 0.16), inset 0 -4px 0 rgba(0, 0, 0, 0.12);
+      border: 3px solid var(--card);
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .pl-name {
+      font: 700 22px 'Space Grotesk', sans-serif;
+      margin-top: 4px;
+    }
+
+    .pl-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--mut);
+      text-align: center;
+    }
+
+    .lvl-tag {
+      background: var(--card-sub);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+    }
+
+    .xp-mini {
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .xp-track {
+      height: 7px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .xp-fill {
+      height: 100%;
+      background: var(--c);
+      border-radius: 999px;
+      transition: width 0.5s var(--ease);
+    }
+
+    .xp-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--mut);
+      margin-top: 4px;
+    }
+
+    .ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      padding: 11px 20px;
+      font-weight: 700;
+      font-size: 14.5px;
+      box-shadow: 0 4px 0 var(--line-strong);
+      transition: transform 0.18s var(--spring), border-color 0.2s ease;
+    }
+
+    .ghost:hover {
+      transform: translateY(-2px);
+      border-color: var(--pri);
+    }
+
+    .ghost:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 var(--line-strong);
+    }
+
+    /* ==========================================================================
+       6. SETUP CARDS, CHIPS & 3D BUTTONS
+       ========================================================================== */
+    .sec {
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+      margin: 14px 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .sec-head h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+    }
+
+    .mini-link {
+      background: var(--pri-soft);
+      color: var(--pri);
+      border: 0;
+      border-radius: 8px;
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+
+    .mini-link:hover {
+      transform: scale(1.03);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      background: var(--card-sub);
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 9px 13px;
+      font-weight: 700;
+      font-size: 13.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 3px 0 var(--line);
+      transition: all 0.16s var(--spring);
+      text-align: left;
+    }
+
+    .chip:hover:not(.on) {
+      transform: translateY(-1.5px);
+      border-color: var(--pri);
+      background: var(--card);
+    }
+
+    .chip:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 var(--line);
+    }
+
+    .chip.on {
+      background: var(--pri);
+      border-color: var(--pri-dark);
+      color: var(--onp);
+      box-shadow: 0 3px 0 var(--pri-dark);
+    }
+
+    .chip-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 6px;
+      background: rgba(15, 23, 42, 0.08);
+    }
+
+    .chip.on .chip-badge {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .go {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 16px;
+      background: var(--pri);
+      color: var(--onp);
+      border: 0;
+      border-radius: 16px;
+      padding: 15px 20px;
+      font: 700 17px 'Space Grotesk', sans-serif;
+      box-shadow: 0 5px 0 var(--pri-dark), 0 10px 22px rgba(79, 70, 229, 0.24);
+      transition: transform 0.16s var(--spring), box-shadow 0.16s ease, filter 0.2s ease;
+    }
+
+    .go:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      box-shadow: 0 7px 0 var(--pri-dark), 0 14px 26px rgba(79, 70, 229, 0.3);
+    }
+
+    .go:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 var(--pri-dark);
+    }
+
+    .go:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      box-shadow: 0 3px 0 var(--pri-dark);
+      transform: none;
+      filter: none;
+    }
+
+    .go.sec-btn {
+      background: var(--card);
+      color: var(--ink);
+      border: 2px solid var(--line);
+      box-shadow: 0 4px 0 var(--line-strong);
+      font-size: 15.5px;
+      padding: 13px 18px;
+      margin-top: 10px;
+    }
+
+    .go.sec-btn:hover {
+      border-color: var(--pri);
+      box-shadow: 0 6px 0 var(--line-strong);
+    }
+
+    .go.sec-btn:active {
+      box-shadow: 0 1px 0 var(--line-strong);
+    }
+
+    .pill-count {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 3px 10px;
+      border-radius: 8px;
+      font: 700 12px 'JetBrains Mono', monospace;
+    }
+
+    /* ==========================================================================
+       7. GAMEPLAY HUD, QUESTION CARD & ANSWER TILES
+       ========================================================================== */
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      row-gap: 8px;
+      gap: 10px;
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      padding: 10px 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hud-q {
+      font-size: 13.5px;
+      color: var(--mut);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .hud-q strong {
+      color: var(--ink);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hud-mid {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hearts {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .heart-on { color: #E11D48; }
+    .heart-off { color: var(--line-strong); opacity: 0.55; }
+
+    .streak-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--card-sub);
+      border: 1.5px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--ink-2);
+      transition: all 0.22s var(--spring);
+      white-space: nowrap;
+    }
+
+    .streak-pill.hot {
+      background: var(--warnbg);
+      border-color: var(--gold);
+      color: var(--warn);
+      transform: scale(1.06);
+    }
+
+    .score-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .hud-pts {
+      font: 700 20px 'JetBrains Mono', monospace;
+      color: var(--pri);
+    }
+
+    .gain-float {
+      position: absolute;
+      right: 48px;
+      top: -8px;
+      font: 700 14px 'JetBrains Mono', monospace;
+      color: var(--ok);
+      pointer-events: none;
+      animation: floatGain 0.95s var(--ease) forwards;
+      white-space: nowrap;
+    }
+
+    .end-btn {
+      background: var(--card-sub);
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      padding: 6px 11px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--mut);
+      transition: all 0.16s ease;
+    }
+
+    .end-btn:hover {
+      color: var(--bad);
+      border-color: var(--bad);
+      background: var(--badbg);
+    }
+
+    .prog-wrap {
+      height: 8px;
+      border-radius: 999px;
+      background: var(--line);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .prog-wrap i {
+      display: block;
+      height: 100%;
+      background: var(--pri);
+      border-radius: 999px;
+      transition: width 0.25s var(--ease), background-color 0.25s ease;
+    }
+
+    .prog-wrap i.warn { background: var(--gold); }
+    .prog-wrap i.crit { background: var(--bad); animation: pulseCrit 0.6s infinite; }
+
+    .tag-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 0 0 10px;
+    }
+
+    .tag-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--card);
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      padding: 4px 11px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-2);
+    }
+
+    .tag-pill.kind {
+      background: var(--pri-soft);
+      border-color: transparent;
+      color: var(--pri);
+    }
+
+    .kbd-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--mut);
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .kbd-hint, .op-key { display: none; }
+    }
+
+    .q-card {
+      position: relative;
+      background: var(--card);
+      border: 2px solid var(--line-strong);
+      border-radius: 22px;
+      padding: 26px 24px;
+      font: 700 clamp(17px, 4.2vw, 22px)/1.45 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 0 var(--line), var(--shadow-md);
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .opts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .op {
+      position: relative;
+      border: 0;
+      border-radius: 16px;
+      padding: 15px 14px;
+      min-height: 82px;
+      font: 700 15.5px/1.35 'Plus Jakarta Sans', sans-serif;
+      text-align: left;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: #FFFFFF;
+      transition: transform 0.16s var(--spring), box-shadow 0.16s ease, opacity 0.22s ease, filter 0.18s ease;
+      overflow-wrap: break-word;
+    }
+
+    .op:hover:not(:disabled) {
+      transform: translateY(-2.5px);
+      filter: brightness(1.05);
+    }
+
+    .op:active:not(:disabled) {
+      transform: translateY(3px);
+    }
+
+    .op-shape {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.18);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .op-txt { flex: 1; min-width: 0; }
+
+    .op-key {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 6px;
+      padding: 2px 7px;
+      opacity: 0.9;
+      flex-shrink: 0;
+    }
+
+    .o0 { background: #E11D48; box-shadow: 0 5px 0 #9F1239; }
+    .o0:hover:not(:disabled) { box-shadow: 0 7px 0 #9F1239; }
+    .o0:active:not(:disabled) { box-shadow: 0 2px 0 #9F1239; }
+
+    .o1 { background: #2563EB; box-shadow: 0 5px 0 #1E40AF; }
+    .o1:hover:not(:disabled) { box-shadow: 0 7px 0 #1E40AF; }
+    .o1:active:not(:disabled) { box-shadow: 0 2px 0 #1E40AF; }
+
+    .o2 { background: #D97706; box-shadow: 0 5px 0 #92400E; }
+    .o2:hover:not(:disabled) { box-shadow: 0 7px 0 #92400E; }
+    .o2:active:not(:disabled) { box-shadow: 0 2px 0 #92400E; }
+
+    .o3 { background: #059669; box-shadow: 0 5px 0 #065F46; }
+    .o3:hover:not(:disabled) { box-shadow: 0 7px 0 #065F46; }
+    .o3:active:not(:disabled) { box-shadow: 0 2px 0 #065F46; }
+
+    .op:disabled { cursor: default; }
+
+    .op.dim {
+      opacity: 0.32;
+      filter: grayscale(0.3);
+    }
+
+    .op.right {
+      outline: 4px solid var(--ok);
+      outline-offset: 2px;
+      transform: scale(1.015);
+    }
+
+    .op.wrong {
+      outline: 4px solid var(--bad);
+      outline-offset: 2px;
+      animation: shakeX 0.38s ease;
+    }
+
+    .id-input {
+      width: 100%;
+      padding: 17px 18px;
+      font: 700 17px 'Plus Jakarta Sans', sans-serif;
+      border-radius: 16px;
+      border: 2.5px solid var(--line-strong);
+      background: var(--card);
+      color: var(--ink);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.04);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .id-input:focus {
+      border-color: var(--pri);
+      box-shadow: 0 0 0 4px var(--pri-soft);
+    }
+
+    .id-input.ok {
+      border-color: var(--ok);
+      background: var(--okbg);
+    }
+
+    .id-input.no {
+      border-color: var(--bad);
+      background: var(--badbg);
+      animation: shakeX 0.38s ease;
+    }
+
+    .fb {
+      margin-top: 18px;
+      border-radius: 18px;
+      padding: 16px 18px;
+      border: 2px solid transparent;
+      animation: slideUp 0.25s var(--ease) both;
+    }
+
+    .fb.ok {
+      background: var(--okbg);
+      border-color: var(--ok-line);
+      color: var(--ok);
+    }
+
+    .fb.no {
+      background: var(--badbg);
+      border-color: var(--bad-line);
+      color: var(--bad);
+    }
+
+    .fb-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      font: 700 18px 'Space Grotesk', sans-serif;
+      margin-bottom: 6px;
+    }
+
+    .fb-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fb-pts {
+      font: 700 12px 'JetBrains Mono', monospace;
+      background: rgba(5, 150, 105, 0.14);
+      padding: 3px 9px;
+      border-radius: 7px;
+    }
+
+    .fb-body {
+      color: var(--ink);
+      font-weight: 500;
+      font-size: 14.5px;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       8. RESULTS, LEADERBOARD & STUDY GUIDE
+       ========================================================================== */
+    .c { text-align: center; }
+
+    .crest-hero {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 10px;
+      border-radius: 22px;
+      background: var(--pri-soft);
+      color: var(--pri);
+      border: 2px solid var(--pri);
+      display: grid;
+      place-items: center;
+      animation: floatBadge 2.4s ease-in-out infinite;
+    }
+
+    .big {
+      font: 700 clamp(40px, 12vw, 68px) 'Space Grotesk', sans-serif;
+      color: var(--pri);
+      line-height: 1;
+      margin: 8px 0;
+    }
+
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-sub);
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 7px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-top: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 40px 46px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+      text-align: left;
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      padding: 12px 14px;
+      margin-top: 10px;
+      box-shadow: 0 4px 0 var(--line);
+      transition: transform 0.16s var(--spring), border-color 0.2s ease;
+    }
+
+    .row:hover { transform: translateY(-2px); }
+    .row.me { border-color: var(--pri); box-shadow: 0 4px 0 var(--pri-soft); }
+    .row.rk0 { border-color: var(--gold); }
+    .row.rk1 { border-color: var(--silver); }
+    .row.rk2 { border-color: var(--bronze); }
+
+    .rk {
+      display: grid;
+      place-items: center;
+      font: 700 16px 'JetBrains Mono', monospace;
+    }
+
+    .row .av {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border-width: 2px;
+    }
+
+    .row .row-name { min-width: 0; }
+    .row .row-name strong { display: inline-block; max-width: 100%; }
+    .row small {
+      color: var(--mut);
+      display: block;
+      font-size: 12.5px;
+    }
+
+    .row .pt {
+      font: 700 17px 'JetBrains Mono', monospace;
+      text-align: right;
+      color: var(--pri);
+      white-space: nowrap;
+    }
+
+    .you-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      background: var(--pri-soft);
+      color: var(--pri);
+      padding: 2px 7px;
+      border-radius: 6px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+
+    .trk {
+      background: var(--card-sub);
+      border: 2px solid var(--line);
+      border-top: 0;
+      border-radius: 0 0 18px 18px;
+      padding: 18px 16px 16px;
+      margin: -6px 6px 6px;
+      animation: slideUp 0.24s var(--ease) both;
+    }
+
+    .st {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .st > div {
+      background: var(--card);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 6px;
+    }
+
+    .st b {
+      font: 700 18px 'JetBrains Mono', monospace;
+      display: block;
+      color: var(--pri);
+    }
+
+    .st small {
+      color: var(--mut);
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .br {
+      display: grid;
+      grid-template-columns: 165px 1fr 44px;
+      gap: 10px;
+      align-items: center;
+      margin: 9px 0;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .br-lbl {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--ink-2);
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .br-lbl span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .br div {
+      height: 10px;
+      border-radius: 999px;
+      background: var(--line);
+      overflow: hidden;
+    }
+
+    .br i {
+      display: block;
+      height: 100%;
+      background: var(--pri);
+      border-radius: 999px;
+      transition: width 0.45s var(--ease);
+    }
+
+    .br b {
+      font-family: 'JetBrains Mono', monospace;
+      text-align: right;
+      font-size: 12.5px;
+    }
+
+    .hist {
+      display: flex;
+      gap: 6px;
+      align-items: flex-end;
+      height: 68px;
+      background: var(--card);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 10px 0;
+      margin-top: 8px;
+    }
+
+    .hist i {
+      flex: 1;
+      background: var(--pri);
+      border-radius: 5px 5px 0 0;
+      min-height: 6px;
+      transition: height 0.4s var(--ease), filter 0.2s ease;
+    }
+
+    .hist i:hover { filter: brightness(1.18); }
+
+    /* Study toolbar */
+    .study-toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 14px 0;
+    }
+
+    .search-wrap {
+      position: relative;
+      flex: 1 1 200px;
+      min-width: 0;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 13px 40px 13px 40px;
+      font: 600 16px 'Plus Jakarta Sans', sans-serif;
+      border-radius: 14px;
+      border: 2px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-input:focus { border-color: var(--pri); outline: none; box-shadow: 0 0 0 4px var(--pri-soft); }
+
+    .search-icon {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--mut);
+      pointer-events: none;
+      display: grid;
+      place-items: center;
+    }
+
+    .clear-search {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--card-sub);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      color: var(--mut);
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      padding: 3px;
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .mode-switch button {
+      border: 0;
+      background: transparent;
+      padding: 9px 13px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--mut);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mode-switch button.on {
+      background: var(--pri);
+      color: var(--onp);
+    }
+
+    /* Interactive 3D Flashcard */
+    .fc-stage {
+      perspective: 1100px;
+      margin: 16px 0;
+    }
+
+    .fc-card {
+      width: 100%;
+      min-height: 240px;
+      background: var(--card);
+      border: 2px solid var(--line-strong);
+      border-radius: 24px;
+      padding: 26px 24px;
+      box-shadow: 0 7px 0 var(--line), var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.22s var(--spring), border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .fc-card:hover {
+      border-color: var(--pri);
+      transform: translateY(-2px);
+    }
+
+    .fc-card.flipped {
+      background: var(--pri-soft);
+      border-color: var(--pri);
+    }
+
+    .fc-side-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: var(--card-sub);
+      color: var(--pri);
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .fc-main {
+      font: 700 clamp(18px, 4.5vw, 24px)/1.4 'Space Grotesk', sans-serif;
+      margin: 18px 0;
+      max-width: 560px;
+      overflow-wrap: break-word;
+    }
+
+    .fc-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .fc-controls .ghost {
+      flex: 1 1 auto;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      min-width: 0;
+    }
+
+    .fact {
+      padding: 11px 4px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14.5px;
+      line-height: 1.5;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .fact:last-child { border: 0; padding-bottom: 2px; }
+    .fact-ans {
+      color: var(--pri);
+      font-weight: 700;
+      background: var(--pri-soft);
+      padding: 2px 9px;
+      border-radius: 7px;
+      font-size: 13.5px;
+    }
+
+    .note-row {
+      padding: 10px 12px;
+      margin-top: 8px;
+      border-radius: 12px;
+      background: var(--card-sub);
+      border: 1px solid var(--line);
+      font-size: 13.5px;
+      color: var(--ink-2);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .note-row svg { margin-top: 2px; flex-shrink: 0; }
+
+    /* ==========================================================================
+       9. RESPONSIVE ADJUSTMENTS
+       ========================================================================== */
+    @media (max-width: 620px) {
+      #app { padding: 14px 14px 64px; }
+      .top { padding: 7px 9px; gap: 8px; row-gap: 8px; }
+      nav { order: 3; flex: 1 1 100%; }
+      nav button { flex: 1; justify-content: center; padding: 8px 6px; font-size: 13px; }
+      .sec { padding: 15px; }
+      .q-card { padding: 20px 18px; }
+      .hud { padding: 9px 11px; }
+      .hud-pts { font-size: 18px; }
+      .icon-btn { width: 34px; height: 34px; border-radius: 10px; }
+      .icon-btn svg.ico { width: 16px; height: 16px; }
+      .gain-float { right: 42px; font-size: 13px; }
+    }
+
+    @media (max-width: 500px) {
+      .opts { grid-template-columns: 1fr; }
+      .op { min-height: 68px; padding: 13px 12px; }
+      .g2 { gap: 10px; }
+      .pl { padding: 16px 10px 14px; border-radius: 18px; }
+      .pl-name { font-size: 19px; }
+      .av { width: 62px; height: 62px; border-radius: 18px; }
+      .br { grid-template-columns: 118px 1fr 40px; font-size: 12.5px; gap: 8px; }
+      .st { grid-template-columns: repeat(2, 1fr); }
+      .row { grid-template-columns: 30px 42px 1fr auto; gap: 9px; padding: 11px 11px; }
+      .row .av { width: 42px; height: 42px; border-radius: 12px; }
+      .row .pt { font-size: 15px; }
+      .row small { font-size: 11.5px; }
+      .mode-switch button { padding: 9px 10px; font-size: 12.5px; }
+      .fc-card { padding: 20px 16px; min-height: 220px; }
+      .fc-controls .ghost { padding: 10px 8px; font-size: 12.5px; gap: 5px; }
+      .fc-controls .ghost svg.ico { width: 15px; height: 15px; }
+      .brand-pill { font-size: 11px; padding: 5px 11px; }
+      .who { font-size: 13px; padding: 4px 9px 4px 6px; }
+      .who-av { width: 25px; height: 25px; border-radius: 8px; }
+      .hud-q { font-size: 12.5px; }
+      .streak-pill { font-size: 12px; padding: 3px 8px; }
+      .hearts svg.ico { width: 15px; height: 15px; }
+      .end-btn { padding: 6px 9px; font-size: 12px; }
+    }
+
+    @media (max-width: 380px) {
+      nav button span { display: none; }
+      nav button { padding: 9px 6px; }
+      .br { grid-template-columns: 96px 1fr 36px; }
+      .hud .hud-mid { gap: 5px; }
+      .hud .icon-btn { width: 31px; height: 31px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+  <div id="app"></div>
+
+  <script>
+    "use strict";
+
+    /* ========================================================================
+       1. CUSTOM VECTOR ICON & MASCOT LIBRARY (ZERO EMOJIS)
+       ======================================================================== */
+    const ICONS = {
+      spark: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.6L20 11l-5.6 2.4L12 19l-2.4-5.6L4 11l5.6-2.4L12 3z"/></svg>`,
+      play: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg>`,
+      trophy: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`,
+      book: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+      sun: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`,
+      moon: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+      volOn: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`,
+      volOff: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`,
+      heartOn: `<svg class="ico heart-on" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`,
+      heartOff: `<svg class="ico heart-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`,
+      flame: `<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.5 3.5-1.5 5.5-1.5 5.5s2.5-.5 4 2c1.5 2.5.5 6-2.5 8 1-2 .5-4-1-5-1.5 1-2 3-1 5-3-1.5-4.5-5-3-8.5C8.5 5.5 11.5 3.5 12 2z"/><path d="M12 22a7 7 0 0 0 7-7c0-2.5-1.5-4.5-3-6-.2 1.8-1.5 3-3 3-1.5 0-2.5-1.2-2.5-2.8C8 11 5 13.5 5 16.5A5.5 5.5 0 0 0 12 22z" opacity="0.45"/></svg>`,
+      clock: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+      infinity: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.74-8z"/></svg>`,
+      shield: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+      check: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+      x: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+      arrowRight: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`,
+      arrowLeft: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>`,
+      refresh: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>`,
+      sliders: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>`,
+      search: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+      layers: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`,
+      list: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>`,
+      flip: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
+      bulb: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>`,
+      // Option shapes
+      tri: `<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 4 21 19 3 19"/></svg>`,
+      dia: `<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 3 21 12 12 21 3 12"/></svg>`,
+      cir: `<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>`,
+      sqr: `<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="3"/></svg>`,
+      // Topic icons
+      t_n: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>`,
+      t_p: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
+      t_r: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
+      t_e: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v18M5 8h14M5 8l-3 6h6l-3-6zm14 0l-3 6h6l-3-6z"/></svg>`,
+      t_f: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a7 7 0 0 1 7 7c0 3-2 5-3 7H8c-1-2-3-4-3-7a7 7 0 0 1 7-7z"/><path d="M9 20h6"/></svg>`,
+      t_v: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+      t_x: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>`,
+      // Format icons
+      y_s: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`,
+      y_m: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>`,
+      y_i: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>`,
+      y_b: `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`
+    };
+
+    // Custom Multi-Layered Geometric Vector Mascots (Zero Emojis)
+    const MASCOTS = {
+      // Deni: Geometric Fox
+      deni: `<svg viewBox="0 0 64 64" width="100%" height="100%" fill="none" aria-hidden="true">
+        <polygon points="12,12 26,24 14,34" fill="#FFF" opacity="0.9"/>
+        <polygon points="52,12 38,24 50,34" fill="#FFF" opacity="0.9"/>
+        <polygon points="15,16 23,23 16,29" fill="#1E1B4B"/>
+        <polygon points="49,16 41,23 48,29" fill="#1E1B4B"/>
+        <path d="M14 28 L32 20 L50 28 L46 46 L32 54 L18 46 Z" fill="#FFF"/>
+        <path d="M14 28 L32 36 L18 46 Z" fill="#FFE4E6"/>
+        <path d="M50 28 L32 36 L46 46 Z" fill="#FFE4E6"/>
+        <circle cx="24" cy="34" r="3" fill="#0F172A"/>
+        <circle cx="40" cy="34" r="3" fill="#0F172A"/>
+        <circle cx="25" cy="33" r="1" fill="#FFF"/>
+        <circle cx="41" cy="33" r="1" fill="#FFF"/>
+        <polygon points="29,43 35,43 32,47" fill="#0F172A"/>
+      </svg>`,
+      // Sela: Geometric Octopus
+      sela: `<svg viewBox="0 0 64 64" width="100%" height="100%" fill="none" aria-hidden="true">
+        <path d="M18 32 C18 18, 46 18, 46 32 C46 39, 41 43, 32 43 C23 43, 18 39, 18 32 Z" fill="#FFF"/>
+        <path d="M20 41 Q15 48 18 53" stroke="#FFF" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M27 42 Q25 49 27 54" stroke="#FFF" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M37 42 Q39 49 37 54" stroke="#FFF" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M44 41 Q49 48 46 53" stroke="#FFF" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="26" cy="31" r="3.2" fill="#0F172A"/>
+        <circle cx="38" cy="31" r="3.2" fill="#0F172A"/>
+        <circle cx="27" cy="30" r="1.1" fill="#FFF"/>
+        <circle cx="39" cy="30" r="1.1" fill="#FFF"/>
+        <path d="M29 36 Q32 39 35 36" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>`,
+      // Arj: Geometric Owl
+      arj: `<svg viewBox="0 0 64 64" width="100%" height="100%" fill="none" aria-hidden="true">
+        <polygon points="15,16 24,22 17,28" fill="#FFF"/>
+        <polygon points="49,16 40,22 47,28" fill="#FFF"/>
+        <rect x="16" y="20" width="32" height="32" rx="16" fill="#FFF"/>
+        <circle cx="25" cy="32" r="6.5" fill="#FEF3C7" stroke="#0F172A" stroke-width="2"/>
+        <circle cx="39" cy="32" r="6.5" fill="#FEF3C7" stroke="#0F172A" stroke-width="2"/>
+        <circle cx="25" cy="32" r="2.8" fill="#0F172A"/>
+        <circle cx="39" cy="32" r="2.8" fill="#0F172A"/>
+        <polygon points="29,38 35,38 32,44" fill="#D97706"/>
+        <path d="M24 47 L28 45 L32 47 L36 45 L40 47" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/>
+      </svg>`,
+      // Drei: Geometric Panda
+      drei: `<svg viewBox="0 0 64 64" width="100%" height="100%" fill="none" aria-hidden="true">
+        <circle cx="19" cy="20" r="7" fill="#0F172A"/>
+        <circle cx="45" cy="20" r="7" fill="#0F172A"/>
+        <rect x="15" y="19" width="34" height="31" rx="15" fill="#FFF"/>
+        <ellipse cx="24" cy="33" rx="5.5" ry="6.5" transform="rotate(-12 24 33)" fill="#0F172A"/>
+        <ellipse cx="40" cy="33" rx="5.5" ry="6.5" transform="rotate(12 40 33)" fill="#0F172A"/>
+        <circle cx="25" cy="32" r="2" fill="#FFF"/>
+        <circle cx="39" cy="32" r="2" fill="#FFF"/>
+        <ellipse cx="32" cy="40" rx="3.2" ry="2.2" fill="#0F172A"/>
+        <path d="M28 44 Q32 47 36 44" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>`
+    };
+
+    const medalBadge = i => {
+      if (i > 2) return `<span class="rk">${i + 1}</span>`;
+      const colors = ["#F59E0B", "#94A3B8", "#D97706"];
+      return `<span class="rk" style="color:${colors[i]}">
+        <svg class="ico" style="width:22px;height:22px" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/>
+        </svg>
+      </span>`;
+    };
+
+    /* ========================================================================
+       2. UTILITIES, THEME, WEB AUDIO & CONFETTI
+       ======================================================================== */
+    const $ = s => document.querySelector(s);
+    const sh = a => a.map(v => [Math.random(), v]).sort((a, b) => a[0] - b[0]).map(v => v[1]);
+    const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+    let themePref = "";
+    try { themePref = localStorage.getItem("pcq2_theme") || ""; } catch (e) {}
+    if (themePref) document.documentElement.setAttribute("data-theme", themePref);
+
+    function isDarkNow() {
+      const attr = document.documentElement.getAttribute("data-theme");
+      if (attr) return attr === "dark";
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    function syncUtilBtns() {
+      document.querySelectorAll('[data-util="mute"]').forEach(b => {
+        b.innerHTML = muted ? ICONS.volOff : ICONS.volOn;
+        b.setAttribute("aria-label", muted ? "Unmute sound effects" : "Mute sound effects");
+        b.title = muted ? "Unmute sound effects" : "Mute sound effects";
+      });
+      document.querySelectorAll('[data-util="theme"]').forEach(b => {
+        b.innerHTML = isDarkNow() ? ICONS.sun : ICONS.moon;
+        b.setAttribute("aria-label", isDarkNow() ? "Switch to light mode" : "Switch to dark mode");
+        b.title = isDarkNow() ? "Switch to light mode" : "Switch to dark mode";
+      });
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", isDarkNow() ? "#0B0F19" : "#4F46E5");
+    }
+
+    function toggleTheme() {
+      themePref = isDarkNow() ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", themePref);
+      try { localStorage.setItem("pcq2_theme", themePref); } catch (e) {}
+      sfx("click");
+      syncUtilBtns();
+    }
+
+    let muted = false;
+    try { muted = localStorage.getItem("pcq2_mute") === "1"; } catch (e) {}
+    let audioCtx = null;
+
+    function toggleMute() {
+      muted = !muted;
+      try { localStorage.setItem("pcq2_mute", muted ? "1" : "0"); } catch (e) {}
+      if (!muted) sfx("click");
+      syncUtilBtns();
+    }
+
+    function sfx(type, streak = 0) {
+      if (muted) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const now = audioCtx.currentTime;
+
+        const tone = (freq, start, dur, wave = "sine", vol = 0.13) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = wave;
+          osc.frequency.setValueAtTime(freq, now + start);
+          gain.gain.setValueAtTime(vol, now + start);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + start + dur);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + start);
+          osc.stop(now + start + dur);
+        };
+
+        if (type === "click") {
+          tone(540, 0, 0.055, "triangle", 0.08);
+        } else if (type === "flip") {
+          tone(420, 0, 0.07, "sine", 0.08);
+          tone(620, 0.04, 0.07, "sine", 0.08);
+        } else if (type === "ok") {
+          const boost = Math.min(streak, 6) * 32;
+          tone(523.25 + boost, 0, 0.11, "triangle", 0.15);
+          tone(659.25 + boost, 0.07, 0.17, "triangle", 0.15);
+        } else if (type === "bad") {
+          tone(200, 0, 0.13, "sawtooth", 0.1);
+          tone(155, 0.1, 0.19, "sawtooth", 0.1);
+        } else if (type === "win") {
+          tone(523.25, 0, 0.12, "triangle", 0.14);
+          tone(659.25, 0.1, 0.12, "triangle", 0.14);
+          tone(783.99, 0.2, 0.14, "triangle", 0.14);
+          tone(1046.5, 0.31, 0.34, "triangle", 0.17);
+        }
+      } catch (e) {}
+    }
+
+    // Geometric Confetti Burst
+    const fxCanvas = $("#fx-canvas");
+    const fxCtx = fxCanvas.getContext("2d");
+    let particles = [];
+    let fxRunning = false;
+
+    function resizeFx() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      fxCanvas.width = Math.floor(window.innerWidth * dpr);
+      fxCanvas.height = Math.floor(window.innerHeight * dpr);
+      fxCanvas.style.width = window.innerWidth + "px";
+      fxCanvas.style.height = window.innerHeight + "px";
+      fxCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener("resize", resizeFx);
+    window.addEventListener("orientationchange", () => setTimeout(resizeFx, 150));
+    resizeFx();
+
+    function burstConfetti(count = 34, originY = 0.45) {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const colors = ["#4F46E5", "#E11D48", "#2563EB", "#D97706", "#059669", "#8B5CF6"];
+      const W = window.innerWidth;
+      const H = window.innerHeight;
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 4 + Math.random() * 7.5;
+        particles.push({
+          x: W * (0.28 + Math.random() * 0.44),
+          y: H * originY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 4,
+          size: 6 + Math.random() * 5,
+          color: colors[i % colors.length],
+          rot: Math.random() * 360,
+          vrot: (Math.random() - 0.5) * 14,
+          life: 1
+        });
+      }
+      if (!fxRunning) {
+        fxRunning = true;
+        requestAnimationFrame(stepConfetti);
+      }
+    }
+
+    function stepConfetti() {
+      fxCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.3;
+        p.vx *= 0.98;
+        p.rot += p.vrot;
+        p.life -= 0.019;
+        fxCtx.save();
+        fxCtx.globalAlpha = Math.max(p.life, 0);
+        fxCtx.translate(p.x, p.y);
+        fxCtx.rotate((p.rot * Math.PI) / 180);
+        fxCtx.fillStyle = p.color;
+        fxCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
+        fxCtx.restore();
+      });
+      particles = particles.filter(p => p.life > 0);
+      if (particles.length > 0) requestAnimationFrame(stepConfetti);
+      else fxRunning = false;
+    }
+
+    /* ========================================================================
+       3. CURRICULUM DATA
+       ======================================================================== */
+    const T = {
+      n: "Nature & definition",
+      p: "Communication process",
+      r: "Principles & purposes",
+      e: "Ethics",
+      f: "Influencing forces",
+      v: "Verbal context",
+      x: "Nonverbal"
+    };
+
+    const U = {
+      deni: ["Deni", "#E8455A"],
+      sela: ["Sela", "#2F7BFF"],
+      arj: ["Arj", "#F2A71B"],
+      drei: ["Drei", "#1FAE72"]
+    };
+
+    // Facts: [clue, answer|aliases, topic, optional distractor group]
+    const F = [
+      ["The process of sharing or exchanging opinions, information, ideas, and feelings", "Communication", "n"],
+      ["Course that trains future business professionals to use English competently at work", "Purposive Communication", "n"],
+      ["Purposive Communication shifts emphasis from information dissemination to ___", "Situation analysis|analysis", "n"],
+      ["Purposive Communication shifts emphasis from persuasion to ___", "Participation", "n"],
+      ["Core goal of liberal education, also called education for citizenship", "Engagement", "n"],
+      ["What communication competence affords through learned skills", "Personal power", "n"],
+      ["Author (2008) who tied civic engagement to leadership and solving global problems", "Stanton", "n"],
+      ["Translating information into symbols such as spoken or written words", "Encoding", "p"],
+      ["Interpreting sent symbols and assigning meaning from experience and context", "Decoding", "p"],
+      ["The element that starts the process by forming ideas in response to stimuli", "Sender", "p"],
+      ["Also called the listener or decoder", "Receiver", "p"],
+      ["A response to the message in any form, even a non-response", "Feedback", "p"],
+      ["Anything that interferes with any part of the process", "Noise", "p"],
+      ["Noise from outside sounds such as busy traffic or a loud radio", "Physical noise|physical", "p", "nz"],
+      ["Noise from a negative attitude, emotional disturbance, or presuppositions", "Psychological noise|internal noise|psychological", "p", "nz"],
+      ["Channel that uses spoken language", "Oral", "p", "ch"],
+      ["Channel that uses body movement, writing on a board, or illustrations", "Visual", "p", "ch"],
+      ["Channel that uses motion pictures or stage plays", "Audio-visual", "p", "ch"],
+      ["Channel category: interviews, oral reports, speeches, teleconferences", "Two-way, face-to-face", "p", "c2"],
+      ["Channel category: telephone conversations and intercompany announcements", "Two-way, not face-to-face", "p", "c2"],
+      ["Channel category: letters, memos, reports, press releases, and e-mail", "One-way, not face-to-face", "p", "c2"],
+      ["Principle: communication is driven by motivation to accomplish a goal", "Purposeful", "r", "pr"],
+      ["Principle: elements are always changing and interdependent; each person is both speaker and listener", "Transactional", "r", "pr"],
+      ["Principle: communication combines verbal and nonverbal behaviors", "Package of signals|signals", "r", "pr"],
+      ["Principle: no two people use identical signal systems, so this is always needed", "Process of adjustment|adjustment", "r", "pr"],
+      ["Principle: a message with more than one potential meaning", "Ambiguous", "r", "pr"],
+      ["Principle: events are continuous and circular with no clear-cut beginning or end", "Punctuated", "r", "pr"],
+      ["Principle: once sent, a message can’t be taken back or duplicated identically", "Inevitable, irreversible, and unrepeatable|irreversible|unrepeatable", "r", "pr"],
+      ["Purpose: acquire knowledge of others, the world, and ourselves", "To learn|learn", "r", "pu"],
+      ["Purpose: establish relationships with others", "To relate|relate", "r", "pu"],
+      ["Purpose: engage with others as individuals", "To interact|interact", "r", "pu"],
+      ["Purpose: assist others by listening and offering solutions", "To help|help", "r", "pu"],
+      ["Purpose: strengthen or change attitudes or behaviors", "To influence|influence", "r", "pu"],
+      ["Purpose: enjoy the experience of the moment", "To entertain|entertain", "r", "pu"],
+      ["Ethics is the extension of who you are: a visible sign of your ___ and values", "Principles", "e"],
+      ["Once this is lost, it is seldom regained", "Trust", "e"],
+      ["Your word, written or spoken, establishes a binding ___", "Contract", "e"],
+      ["Key factor in client relationships: “___ you are,” not “what you say”", "Who", "e"],
+      ["Stating unpleasant ideas positively and ___ protects the receiver’s self-worth", "Tactfully|tactful|tact", "e"],
+      ["Disclosing all relevant information instead of shrouding the truth", "Full disclosure", "e"],
+      ["Adapting language by understanding cultural influences on interpretation", "Audience adaptation", "f", "fo"],
+      ["Critical element in creating meaning; it dictates whether words are appropriate", "Context", "f", "fo"],
+      ["Ability to adapt skillfully to many communication experiences", "Rhetorical sensitivity", "f", "fo"],
+      ["Language that acknowledges others, e.g., “That was a great idea, John”", "Confirming language|confirming", "f", "lg"],
+      ["Language that judges others negatively, e.g., “That’s a stupid idea”", "Disconfirming language|disconfirming", "f", "lg"],
+      ["Number of Kirkpatrick’s guidelines on when to use oral communication", "Eight|8", "v"],
+      ["Oral communication fits when the receiver is too busy to ___", "Read", "v"],
+      ["Verbal and nonverbal messages that match", "Congruent", "v", "cg"],
+      ["Verbal and nonverbal messages that do not match", "Incongruent", "v", "cg"],
+      ["Verbal function: saying “I’m sorry” can be more effective than action, as it ___ a wrong", "Corrects", "v"],
+      ["More than this percent of face-to-face information passes through body language", "65", "x"],
+      ["Sensory form that uses sight", "Visual", "x", "sf"],
+      ["Sensory form that uses sound", "Auditory", "x", "sf"],
+      ["Sensory form that uses touch", "Tactile", "x", "sf"],
+      ["Sensory form that uses smell", "Olfactory", "x", "sf"],
+      ["Sensory form that uses taste", "Gustatory", "x", "sf"],
+      ["Nonverbal type: messages through eyes, face, gestures, and posture", "Kinesics|body movement", "x", "ty"],
+      ["Nonverbal type: attractiveness, body shape, size, color, and clothing", "Physical characteristics", "x", "ty"],
+      ["Most powerful and most basic nonverbal form, the first we learn", "Touch", "x", "ty"],
+      ["Nonverbal type: clothing, badges, tattoos, jewelry, gadgets, cosmetics", "Artefacts|artifacts", "x", "ty"],
+      ["Nonverbal type divided into formal and informal", "Time", "x", "ty"],
+      ["Use of personal space and physical approach", "Proxemics", "x"],
+      ["Nonverbal function: complements, contradicts, repeats, or substitutes for words", "Modifies verbal communication|modifies", "x", "fn"],
+      ["Nonverbal function covering like/dislike, status/power, and awareness", "Expresses feelings|expresses", "x", "fn"],
+      ["Nonverbal function using turn-taking and start/stop cues", "Regulates interaction|regulates", "x", "fn"],
+      ["Modifier: using hand gestures while giving directions", "Complement", "x", "md"],
+      ["Modifier: shouting “I am NOT angry!”", "Contradict", "x", "md"],
+      ["Modifier: saying “three” while holding up three fingers", "Repeat", "x", "md"],
+      ["Modifier: nodding instead of saying “Yes”", "Substitute", "x", "md"]
+    ];
+
+    // Situations & multiple choice: [topic, kind s|m, question, explanation, correct, wrong1, wrong2, wrong3]
+    const M = [
+      ["n", "m", "Which four skills does communication consist of as a function of civilization?", "Reading, writing, speaking, and listening (R-W-S-L).", "Reading, writing, speaking, listening", "Reading, writing, drawing, singing", "Typing, texting, speaking, memorizing", "Writing, counting, speaking, reciting"],
+      ["n", "s", "Your team must give a job talk and a TED-style presentation. Why does the course prepare you for this?", "Professional settings call for large-scale presentations, job talks, and TED talks.", "So you’re ready for specialized workplace communication", "So you can avoid group work", "Because writing no longer matters", "To replace technical skills"],
+      ["n", "s", "A student applies leadership and disciplinary knowledge to a global problem. Which liberal-education goal is this?", "Engagement (education for citizenship) prepares students for civic involvement.", "Engagement", "Dissemination", "Noise reduction", "Decoding"],
+      ["p", "s", "You must tell a staff member she is being let go. Which channel fits best?", "Sensitive or unpleasant messages suit face-to-face meetings, not text or email.", "A face-to-face meeting", "A text message", "A group email", "A voicemail"],
+      ["p", "s", "You need an answer from a supplier within the hour. Which channel gives immediate feedback?", "A postal letter is poor for immediate feedback; two-way channels work better.", "A phone call", "A postal letter", "A bulletin-board memo", "A press release"],
+      ["p", "s", "You email your manager and she never replies. What does the lesson say about her silence?", "Even non-response can be interpreted as feedback.", "It can still be read as feedback", "It isn’t feedback because nothing was said", "It proves perfect decoding", "It is a type of encoding"],
+      ["p", "s", "A loud radio next door drowns out your presentation. What kind of noise is this?", "Physical noise is external sound like traffic or a radio.", "Physical noise", "Psychological noise", "Feedback", "Decoding"],
+      ["p", "s", "A listener is still angry from an argument and can’t focus on your talk. What kind of noise is this?", "Psychological (internal) noise includes negative attitudes and emotional disturbances.", "Psychological noise", "Physical noise", "Channel noise", "Encoding noise"],
+      ["p", "m", "Which sequence shows the process correctly (S-E-M-C-R-F + N)?", "Sender encodes, message goes through a channel, receiver decodes, feedback returns, noise hinders any step.", "Sender → Message → Channel → Receiver → Feedback", "Receiver → Message → Sender → Channel → Feedback", "Message → Sender → Feedback → Channel → Receiver", "Channel → Sender → Receiver → Message → Feedback"],
+      ["p", "m", "Why can’t the sender fully control how a message lands?", "Personality, beliefs, culture, and education influence the message.", "Personality, beliefs, culture, and education shape it", "Receivers are always careless", "Words have one fixed meaning", "Channels never matter"],
+      ["p", "s", "A listener frowns and asks, “Could you repeat that?” What is this?", "Feedback can be verbal or nonverbal, positive or negative, and may prompt message changes.", "Verbal and nonverbal feedback", "Encoding only", "Physical noise", "A one-way channel"],
+      ["r", "s", "You chat with a friend just to enjoy the moment. Which general purpose is this?", "To entertain: enjoy the experience of the moment.", "To entertain", "To learn", "To influence", "To help"],
+      ["r", "s", "You give a speech to change classmates’ attitudes about recycling. Which purpose?", "To influence: strengthen or change attitudes or behaviors.", "To influence", "To interact", "To entertain", "To learn"],
+      ["r", "s", "You say “I’m fine!” sharply while frowning. Which principle explains the mixed message?", "Communication is a package of signals; the less acceptable message is often nonverbal.", "Package of signals", "Punctuated", "Purposeful", "Unrepeatable"],
+      ["r", "s", "You blurt out something rude, then apologize, but the hurt remains. Which principle applies?", "Messages are inevitable, irreversible, and unrepeatable.", "Irreversible", "Ambiguous", "Transactional", "Punctuated"],
+      ["r", "s", "You say “Let’s meet soon.” Your friend assumes tomorrow; you meant next month. Which principle?", "Ambiguous messages have more than one potential meaning.", "Ambiguous", "Purposeful", "Transactional", "Process of adjustment"],
+      ["r", "s", "A couple argues, each saying the other started it. Which principle explains this?", "Punctuated: continuous, circular events split into causes and effects.", "Punctuated", "Ambiguous", "Purposeful", "Inevitable"],
+      ["r", "s", "You speak slower with a foreign client to match her English. Which principle?", "Process of adjustment: no two people use identical signal systems.", "Process of adjustment", "Punctuated", "Package of signals", "Ambiguous"],
+      ["e", "s", "A client asks about a defect. You share every relevant detail, including the bad news. Which trait is this?", "Ethical communication is truthful, honest, fair, and fully disclosed.", "Truthful, full disclosure", "Tact", "Persuasion", "Clear vocabulary"],
+      ["e", "s", "You must reject a job applicant. Which wording follows ethical communication?", "State unpleasant ideas tactfully and positively to protect self-worth and goodwill.", "“Thank you for applying; we chose someone whose skills match this role.”", "“You weren’t good enough.”", "“Don’t apply again.”", "No reply at all"],
+      ["e", "m", "Which is NOT a benefit of practicing communication ethics?", "Benefits: desired response, courage on sensitive issues, honest relationships, justified respect.", "A guaranteed promotion", "A better chance of the desired response", "Courage to handle sensitive issues", "Justified respect from superiors"],
+      ["e", "m", "What is the sole purpose of ethical communication?", "It upholds personal values and the company’s standards of ethical conduct.", "Upholding personal values and company ethical standards", "Winning every argument", "Hiding unpleasant facts", "Impressing superiors"],
+      ["f", "s", "A joke works at a barkada party but not in a board meeting. Which force decides this?", "Context dictates whether words are appropriate.", "Context", "Audience adaptation", "Feedback", "Encoding"],
+      ["f", "s", "A teammate shares an idea. Which reply uses confirming language?", "Confirming language acknowledges others; disconfirming judges negatively.", "“That was a great idea, John.”", "“That’s a stupid idea.”", "“Whatever.”", "“You always get it wrong.”"],
+      ["f", "m", "The mnemonic A-C-R stands for…", "The three influencing forces.", "Audience adaptation, Context, Rhetorical sensitivity", "Audio, Channel, Receiver", "Attitude, Culture, Reaction", "Ask, Clarify, Respond"],
+      ["v", "s", "Your listener doesn’t care about your topic. What does Kirkpatrick suggest?", "Use oral communication when the receiver is uninterested; it keeps attention.", "Speak with them directly", "Send a memo", "Post a notice", "Mass email"],
+      ["v", "s", "Two coworkers are very emotional. Which medium helps most?", "Oral communication lets both let off steam, cool down, and build understanding.", "A face-to-face talk", "An email thread", "A written warning", "A group chat"],
+      ["v", "s", "You must criticize an employee’s work. How do you reduce resentment?", "Oral criticism is less threatening because it isn’t formalized in writing.", "Talk to them privately", "Send a formal memo", "Post it publicly", "Email the whole team"],
+      ["v", "s", "You want to persuade a hesitant client. Why choose oral communication?", "It offers flexibility, emphasis, listening, and removes resistance.", "It offers flexibility and removes resistance", "It leaves no record", "It avoids feedback", "It is always cheaper"],
+      ["v", "m", "U-F-E-B-P-D-C-O stands for…", "Uninterested, Feedback, Emotions, Busy, Persuade, Discussion, Criticism, One-to-one.", "Kirkpatrick’s 8 guidelines for oral communication", "The 8 types of noise", "The 8 principles", "The 8 sensory forms"],
+      ["x", "s", "Your friend nods instead of saying “Yes.” Which way does nonverbal modify verbal?", "Substitute: the cue replaces the words.", "Substitute", "Complement", "Contradict", "Repeat"],
+      ["x", "s", "Your interviewee crosses her arms and looks sideways. What may this signal?", "Crossed arms show defensiveness; looking sideways shows nervousness or disinterest.", "Defensiveness or nervousness", "Confidence", "Interest and respect", "Flirting"],
+      ["x", "s", "A candidate sits upright and keeps direct eye contact. This shows…", "Upright posture shows confidence; direct eye contact shows respect and openness.", "Confidence and respect", "Dishonesty", "Insecurity", "Impatience"],
+      ["x", "s", "A speaker keeps touching her face and neck. What can this signal?", "It signals lack of confidence, insecurity, or dishonesty.", "Insecurity", "Authority", "Respect", "Interest"],
+      ["x", "s", "Your coworker rapidly taps his foot during your meeting. This indicates…", "Rapid tapping shows impatience, nervousness, or intimidation.", "Impatience", "Confidence", "Respect", "Agreement"],
+      ["x", "s", "You meet a client formally for the first time. What best breaks barriers?", "Smiling and handshakes (in formal situations) help relate and break barriers.", "Smile and shake hands", "Cross your arms", "Avoid eye contact", "Stand far away"],
+      ["x", "s", "You arrive 30 minutes late to an interview. Which nonverbal type is speaking?", "Punctuality and tardiness are time messages.", "Time", "Touch", "Artefacts", "Kinesics"],
+      ["x", "s", "A nurse’s uniform and badge make patients trust her. Which nonverbal type?", "Artefacts reflect self-image and trigger stereotypes.", "Artefacts", "Kinesics", "Touch", "Time"],
+      ["x", "s", "Your appointment with a dentist is an example of…", "Formal time covers scheduled exchanges like doctor or lawyer appointments.", "Formal time", "Informal time", "Proxemics", "Touch"],
+      ["x", "s", "You stop talking so your boss can speak first. Which relational dimension?", "Perceptions of status or power, such as giving a boss more speaking time.", "Status or power", "Like or dislike", "Awareness", "Congruence"],
+      ["x", "m", "Knapp (1978): a tall, thin, fragile build is stereotyped as…", "Tall, thin, fragile means tense, nervous, conscientious, meticulous.", "Tense, nervous, conscientious", "Easy-going, happy", "Adventurous, self-reliant", "Lazy, careless"],
+      ["x", "m", "Knapp (1978): a soft, round, fatter build is stereotyped as…", "Soft, round means easy-going, happy, good-natured.", "Easy-going, happy, good-natured", "Tense, meticulous", "Adventurous, mature", "Cold, distant"],
+      ["x", "m", "Knapp (1978): a strong, muscular build is stereotyped as…", "Strong, muscular means adventurous, mature, self-reliant.", "Adventurous, mature, self-reliant", "Easy-going, happy", "Tense, nervous", "Shy, fragile"],
+      ["x", "m", "Which cues does nonverbal communication use to regulate interaction?", "Turn-taking cues and start/stop cues.", "Turn-taking and start/stop cues", "Smell and taste", "Artefacts and time", "Noise and channels"]
+    ];
+
+    // True/false: [topic, statement, truth, explanation]
+    const B = [
+      ["n", "Communication consists only of speaking and writing.", 0, "It also includes reading and listening."],
+      ["p", "A message is automatically understood once it is sent.", 0, "Messages can be misinterpreted in unlimited ways."],
+      ["p", "Receiving a message guarantees successful decoding.", 0, "Reception alone does not guarantee success."],
+      ["p", "A misplaced comma or a thoughtful pause can be noise.", 1, "Noise is anything that interferes with any part of the process."],
+      ["p", "For immediate feedback, a postal letter is a good channel.", 0, "Letters are one-way and slow."],
+      ["r", "Communication is static and never changes.", 0, "Transactional elements are always changing."],
+      ["r", "The socially acceptable message is usually verbal; the less acceptable one nonverbal.", 1, "This is the package-of-signals principle."],
+      ["e", "Ethical communication means shrouding the truth to protect the company.", 0, "It requires full disclosure."],
+      ["e", "Technical expertise alone is the most critical factor in business success.", 0, "Strong client relationships matter most."],
+      ["f", "Saying “That’s a stupid idea” is confirming language.", 0, "It is disconfirming; it judges negatively."],
+      ["v", "Oral communication suits situations where emotions are high.", 1, "It lets both parties let off steam and cool down."],
+      ["v", "Criticism is best formalized in writing to avoid resentment.", 0, "Oral criticism is less threatening."],
+      ["x", "Crossed arms or legs usually signal an open attitude.", 0, "They signal defensiveness or a closed attitude."],
+      ["x", "When verbal and nonverbal messages don’t match, they are congruent.", 0, "They are incongruent."],
+      ["x", "A purposeful foot touch under a table can signal flirting.", 1, "It’s one of the key body-language clues."]
+    ];
+
+    // Study notes beyond the fact cards
+    const MN = [
+      ["Core shifts", "D-A-P-P: Dissemination → Analysis; Persuasion → Participation"],
+      ["Civilization’s skills", "R-W-S-L: Reading, Writing, Speaking, Listening"],
+      ["Process", "S-E-M-C-R-F + N: Sender, Encode, Message, Channel, Receiver, Feedback, Noise"],
+      ["7 principles", "P-T-P-A-A-P-I: Purposeful, Transactional, Package of signals, Adjustment, Ambiguous, Punctuated, Inevitable/Irreversible/Unrepeatable"],
+      ["6 purposes", "L-R-I-H-I-E: Learn, Relate, Interact, Help, Influence, Entertain"],
+      ["3 forces", "A-C-R: Audience adaptation, Context, Rhetorical sensitivity"],
+      ["Kirkpatrick’s 8", "U-F-E-B-P-D-C-O: Uninterested, Feedback, Emotions, Busy, Persuade, Discussion, Criticism, One-to-one"],
+      ["Sensory forms", "V-A-T-O-G: Visual, Auditory, Tactile, Olfactory, Gustatory"],
+      ["Functions & modifiers", "M-E-R: Modifies, Expresses, Regulates · C-C-R-S: Complement, Contradict, Repeat, Substitute"],
+      ["5 nonverbal types", "B-P-T-A-T: Body movement, Physical characteristics, Touch, Artefacts, Time"]
+    ];
+
+    const NT = {
+      e: [
+        "4 benefits: desired response · courage with sensitive issues · honest relationships · justified respect",
+        "3 traits: truthful and complete · clear in the reader’s vocabulary · tactful and positive"
+      ],
+      v: [
+        "Kirkpatrick’s 8: receiver uninterested · feedback needed · emotions high · receiver busy · persuading · discussion needed · criticism · one-to-one preferred"
+      ],
+      x: [
+        "Eye contact = respect · upright posture = confidence · crossed arms = defensive · face touching = insecurity · rapid tapping = impatience",
+        "Expresses feelings: like/dislike · status/power · awareness of others"
+      ]
+    };
+
+    // Rotating motivational quotes for the intro screen
+    const QUOTES = [
+      "Every great conversation begins with the courage to listen.",
+      "Clarity is kindness — say what you mean, mean what you say.",
+      "You can’t master communication; you can only keep sharpening it.",
+      "The message you send is never the message they receive — build the bridge.",
+      "Small words, spoken well, move mountains.",
+      "Confidence is built one honest sentence at a time.",
+      "Great communicators aren’t born; they practice out loud.",
+      "Listen twice as much as you speak — you’ll learn twice as fast.",
+      "Silence is part of the message. Use it on purpose.",
+      "Your voice matters. Train it, then trust it.",
+      "Precision beats volume. Every single time.",
+      "Progress hides in the questions you’re brave enough to ask.",
+      "The best speakers are the ones still learning to listen.",
+      "Say it simply. Say it clearly. Say it like you mean it.",
+      "Every session is a rep. Every rep is a step.",
+      "Words build bridges or walls — you choose the blueprint.",
+      "Master the pause, and you master the room.",
+      "Understanding is a two-way street. Meet them halfway.",
+      "Curiosity is the fastest route to connection.",
+      "You don’t need perfect words — just honest ones."
+    ];
+
+    /* ========================================================================
+       4. STORAGE, STATE & QUESTION POOL ENGINE
+       ======================================================================== */
+    let DB = { u: {} };
+    let cur = null;
+    let G = null;
+    let tmr = null;
+    let quoteTimer = null;
+    let quoteIdx = Math.floor(Math.random() * QUOTES.length);
+    let SB = "xp";
+    let OP = null;
+    let currentScreen = "pick";
+    let studyQuery = "";
+    let studyMode = "list";
+    let cardIdx = 0;
+    let cardFlipped = false;
+    let sel = { t: Object.keys(T), y: ["s", "m", "i", "b"], c: 10, l: 1, tm: 0 };
+
+    try {
+      const raw = localStorage.getItem("pcq2");
+      if (raw) DB = JSON.parse(raw) || { u: {} };
+    } catch (e) { DB = { u: {} }; }
+
+    if (!DB || typeof DB !== "object") DB = { u: {} };
+    if (!DB.u || typeof DB.u !== "object") DB.u = {};
+
+    Object.keys(U).forEach(k => {
+      const d = DB.u[k];
+      DB.u[k] = (d && typeof d === "object") ? d : {};
+      const u = DB.u[k];
+      u.xp = Number(u.xp) || 0;
+      u.g = Number(u.g) || 0;
+      u.c = Number(u.c) || 0;
+      u.n = Number(u.n) || 0;
+      u.bs = Number(u.bs) || 0;
+      u.bg = Number(u.bg) || 0;
+      u.t = (u.t && typeof u.t === "object") ? u.t : {};
+      u.h = Array.isArray(u.h) ? u.h : [];
+    });
+
+    const save = () => {
+      try { localStorage.setItem("pcq2", JSON.stringify(DB)); } catch (e) {}
+    };
+
+    const lv = d => Math.floor(d.xp / 1000) + 1;
+    const acc = d => (d.n ? Math.round((d.c / d.n) * 100) : 0);
+
+    const app = h => {
+      $("#app").innerHTML = h;
+      window.scrollTo(0, 0);
+    };
+
+    function clearTimers() {
+      clearInterval(tmr);
+      tmr = null;
+      clearInterval(quoteTimer);
+      quoteTimer = null;
+    }
+
+    function dist(f) {
+      const g = f[3] || f[2];
+      const a = f[1].split("|")[0];
+      const r = [];
+      [F.filter(x => (x[3] || x[2]) == g), F.filter(x => x[2] == f[2]), F].forEach(l =>
+        sh(l).forEach(x => {
+          const y = x[1].split("|")[0];
+          if (y !== a && !r.includes(y) && r.length < 3) r.push(y);
+        })
+      );
+      return r;
+    }
+
+    function pool(tp, ty) {
+      const o = [];
+      F.forEach(f => {
+        if (!tp.includes(f[2])) return;
+        const a = f[1].split("|")[0];
+        const e = a + ": " + f[0] + ".";
+        if (ty.includes("i")) o.push({ k: "i", t: f[2], q: f[0], a: f[1], e });
+        if (ty.includes("m")) o.push({ k: "m", t: f[2], q: f[0], o: sh([a, ...dist(f)]), a, e });
+        if (ty.includes("b")) {
+          const d = dist(f)[0];
+          if (d) {
+            const tr = Math.random() < 0.5;
+            o.push({ k: "b", t: f[2], q: "“" + (tr ? a : d) + "” matches this: " + f[0], a: tr ? 1 : 0, e });
+          }
+        }
+      });
+      M.forEach(m => {
+        if (tp.includes(m[0]) && ty.includes(m[1])) {
+          o.push({ k: m[1], t: m[0], q: m[2], e: m[3], o: sh(m.slice(4)), a: m[4] });
+        }
+      });
+      if (ty.includes("b")) {
+        B.forEach(b => {
+          if (tp.includes(b[0])) o.push({ k: "b", t: b[0], q: b[1], a: b[2], e: b[3] });
+        });
+      }
+      return sh(o);
+    }
+
+    const hit = (t, a) => {
+      t = norm(t);
+      return t && a.split("|").some(x => {
+        x = norm(x);
+        return t === x || (t.length > 3 && x.length > 2 && (x.includes(t) || t.includes(x)));
+      });
+    };
+
+    /* ========================================================================
+       5. SHARED HEADER & UTILITY BAR
+       ======================================================================== */
+    const utilBtns = () => `
+      <button class="icon-btn" data-util="mute" onclick="toggleMute()" title="${muted ? "Unmute sound effects" : "Mute sound effects"}" aria-label="${muted ? "Unmute sound effects" : "Mute sound effects"}">
+        ${muted ? ICONS.volOff : ICONS.volOn}
+      </button>
+      <button class="icon-btn" data-util="theme" onclick="toggleTheme()" title="${isDarkNow() ? "Switch to light mode" : "Switch to dark mode"}" aria-label="${isDarkNow() ? "Switch to light mode" : "Switch to dark mode"}">
+        ${isDarkNow() ? ICONS.sun : ICONS.moon}
+      </button>
+    `;
+
+    const bar = t => cur
+      ? `<div class="top">
+          <div class="top-left">
+            <button class="who" style="--c:${U[cur][1]}" onclick="sfx('click');pick()" title="Switch player">
+              <span class="who-av">${MASCOTS[cur]}</span>
+              <span>${U[cur][0]}</span>
+              <small>Switch</small>
+            </button>
+          </div>
+          <nav aria-label="Main navigation">
+            ${[
+              ["home", ICONS.play, "Play"],
+              ["board", ICONS.trophy, "Ranks"],
+              ["study", ICONS.book, "Study"]
+            ].map(x =>
+              `<button class="${t === x[0] ? "on" : ""}" onclick="sfx('click');${x[0]}()" aria-label="${x[2]}" ${t === x[0] ? 'aria-current="page"' : ""}>${x[1]}<span>${x[2]}</span></button>`
+            ).join("")}
+          </nav>
+          <div class="top-right">${utilBtns()}</div>
+        </div>`
+      : `<div class="top">
+          <button class="ghost" style="padding:8px 14px" onclick="sfx('click');pick()">${ICONS.arrowLeft} Back</button>
+          <div class="top-right">${utilBtns()}</div>
+        </div>`;
+
+    /* ========================================================================
+       6. SCREEN 1: PLAYER SELECT
+       ======================================================================== */
+    function rotateQuote() {
+      const el = document.getElementById("intro-quote");
+      if (!el) { clearInterval(quoteTimer); quoteTimer = null; return; }
+      quoteIdx = (quoteIdx + 1) % QUOTES.length;
+      el.classList.add("fade");
+      setTimeout(() => {
+        el.textContent = "“" + QUOTES[quoteIdx] + "”";
+        el.classList.remove("fade");
+      }, 220);
+    }
+
+    function pick() {
+      currentScreen = "pick";
+      clearTimers();
+      G = null;
+
+      app(`
+        <div class="anim-in">
+          <div class="hero-top">
+            <div class="brand-pill">${ICONS.spark} <span>Communication Mastery</span></div>
+            <div class="top-right">${utilBtns()}</div>
+          </div>
+          <div class="hero-head">
+            <h1>Purposive Communication:<br><span>Endless Quest</span></h1>
+            <p id="intro-quote" aria-live="polite">“${QUOTES[quoteIdx]}”</p>
+          </div>
+          <div class="g2">
+            ${Object.keys(U).map(k => {
+              const d = DB.u[k];
+              const level = lv(d);
+              const progress = Math.round(((d.xp % 1000) / 1000) * 100);
+              return `
+                <button class="pl" style="--c:${U[k][1]}" onclick="sign('${k}')">
+                  <span class="av">${MASCOTS[k]}</span>
+                  <span class="pl-name">${U[k][0]}</span>
+                  <div class="pl-meta">
+                    <span class="lvl-tag">LVL ${level}</span>
+                    <span>${acc(d)}% acc</span>
+                  </div>
+                  <div class="xp-mini">
+                    <div class="xp-track"><div class="xp-fill" style="width:${progress}%"></div></div>
+                    <div class="xp-labels">
+                      <span class="mono">${d.xp} XP</span>
+                      <span class="mono">LVL ${level + 1}</span>
+                    </div>
+                  </div>
+                </button>`;
+            }).join("")}
+          </div>
+          <div class="c">
+            <button class="ghost" onclick="sfx('click');board()">${ICONS.trophy} View Leaderboard</button>
+          </div>
+        </div>
+      `);
+
+      quoteTimer = setInterval(rotateQuote, 7000);
+    }
+
+    function sign(k) {
+      sfx("click");
+      if (!U[k]) return;
+      cur = k;
+      OP = k;
+      home();
+    }
+
+    /* ========================================================================
+       7. SCREEN 2: QUIZ SETUP
+       ======================================================================== */
+    const chip = (g, v, l, on) => `<button class="chip ${on ? "on" : ""}" onclick="sfx('click');tg('${g}',${v})" aria-pressed="${on}">${l}</button>`;
+
+    function tg(g, v) {
+      if (g === "t" || g === "y") {
+        const a = sel[g];
+        if (a.includes(v)) {
+          if (a.length > 1) a.splice(a.indexOf(v), 1);
+        } else {
+          a.push(v);
+        }
+      } else {
+        sel[g] = v;
+      }
+      home();
+    }
+
+    function toggleAllTopics() {
+      sfx("click");
+      sel.t = sel.t.length === Object.keys(T).length ? ["n"] : Object.keys(T);
+      home();
+    }
+
+    function home() {
+      currentScreen = "home";
+      clearTimers();
+      G = null;
+
+      const n = pool(sel.t, sel.y).length;
+      const ty = { s: "Situations", m: "Multiple choice", i: "Identification", b: "True or false" };
+      const allSelected = sel.t.length === Object.keys(T).length;
+      const d = DB.u[cur];
+
+      app(`
+        <div class="anim-in">
+          ${bar("home")}
+          <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+            <h2>Configure Session</h2>
+            <span class="m mono" style="font-size:12.5px">LVL ${lv(d)} · ${d.xp} XP</span>
+          </div>
+
+          <div class="sec">
+            <div class="sec-head">
+              <h3>${ICONS.book} <span>Modules</span> <span class="mono m" style="font-size:12px">(${sel.t.length}/${Object.keys(T).length})</span></h3>
+              <button class="mini-link" onclick="toggleAllTopics()">${allSelected ? "Reset to 1" : "Select All"}</button>
+            </div>
+            <div class="chips">
+              ${Object.keys(T).map(k => {
+                const st = d.t[k] || [0, 0];
+                const pct = st[1] ? Math.round((st[0] / st[1]) * 100) + "%" : "";
+                return chip("t", `'${k}'`, `${ICONS["t_" + k]} <span>${T[k]}</span>${pct ? `<span class="chip-badge">${pct}</span>` : ""}`, sel.t.includes(k));
+              }).join("")}
+            </div>
+          </div>
+
+          <div class="sec">
+            <div class="sec-head">
+              <h3>${ICONS.layers} <span>Question Formats</span></h3>
+            </div>
+            <div class="chips">
+              ${Object.keys(ty).map(k => chip("y", `'${k}'`, `${ICONS["y_" + k]} <span>${ty[k]}</span>`, sel.y.includes(k))).join("")}
+            </div>
+          </div>
+
+          <div class="sec">
+            <div class="sec-head">
+              <h3>${ICONS.sliders} <span>Length & Rules</span></h3>
+            </div>
+            <div class="chips" style="margin-bottom:10px">
+              ${[10, 20, 30, 0].map(v => chip("c", v, v ? `${v} Questions` : `${ICONS.infinity} <span>Endless</span>`, sel.c == v)).join("")}
+            </div>
+            <div class="chips">
+              ${chip("l", 1, `${ICONS.heartOn} <span>3 Lives</span>`, sel.l == 1)}
+              ${chip("l", 0, `${ICONS.shield} <span>No Lives</span>`, sel.l == 0)}
+              ${chip("tm", 1, `${ICONS.clock} <span>20s Timer</span>`, sel.tm == 1)}
+              ${chip("tm", 0, `<span>Untimed</span>`, sel.tm == 0)}
+            </div>
+          </div>
+
+          ${n === 0
+            ? `<div class="note-row" style="border-color:var(--bad-line);background:var(--badbg);color:var(--bad)">
+                 ${ICONS.x} <span>No questions match this combination. Pick at least one more module or format.</span>
+               </div>
+               <button class="go" disabled>${ICONS.play} <span>Start Session</span></button>`
+            : `<button class="go" onclick="sfx('click');start()">
+                 ${ICONS.play} <span>Start Session</span> <span class="pill-count">${n} items</span>
+               </button>`
+          }
+        </div>
+      `);
+    }
+
+    /* ========================================================================
+       8. SCREEN 3: ACTIVE GAMEPLAY
+       ======================================================================== */
+    function start() {
+      const p = pool(sel.t, sel.y);
+      if (!p.length) return;
+
+      currentScreen = "play";
+      clearTimers();
+      G = {
+        p,
+        i: 0,
+        pts: 0,
+        st: 0,
+        bs: 0,
+        ok: 0,
+        n: 0,
+        hp: sel.l ? 3 : 99,
+        tot: sel.c || 1e9,
+        tp: {},
+        q: null,
+        done: 0,
+        t0: 0,
+        o: []
+      };
+      nx();
+    }
+
+    function nx() {
+      if (!G) return;
+      if (G.n >= G.tot || G.hp <= 0) return fin();
+
+      if (G.i >= G.p.length) {
+        G.p = pool(sel.t, sel.y);
+        G.i = 0;
+        if (!G.p.length) return fin();
+      }
+
+      G.q = G.p[G.i++];
+      G.done = 0;
+      G.t0 = Date.now();
+      draw();
+
+      clearInterval(tmr);
+      tmr = null;
+      if (sel.tm) tmr = setInterval(tick, 100);
+    }
+
+    const hud = (gainText = "") => {
+      const qNum = G.n + (G.done ? 0 : 1);
+      const qLabel = G.tot < 1e9
+        ? `<strong>${Math.min(qNum, G.tot)}</strong> / ${G.tot}`
+        : `<strong>#${qNum}</strong>`;
+      const hearts = sel.l
+        ? `<span class="hearts" title="Lives remaining">${ICONS.heartOn.repeat(Math.max(G.hp, 0))}${ICONS.heartOff.repeat(Math.max(3 - G.hp, 0))}</span>`
+        : "";
+      return `
+        <div class="hud">
+          <div class="hud-q">Q ${qLabel}</div>
+          <div class="hud-mid">
+            ${hearts}
+            <span class="streak-pill ${G.st >= 3 ? "hot" : ""}">${ICONS.flame} ${G.st}x</span>
+          </div>
+          <div class="score-box">
+            <span class="hud-pts">${G.pts}</span>
+            ${gainText ? `<span class="gain-float">${gainText}</span>` : ""}
+            <span id="play-utils" style="display:inline-flex;gap:4px">${utilBtns()}</span>
+            <button class="end-btn" onclick="sfx('click');fin()">End</button>
+          </div>
+        </div>
+      `;
+    };
+
+    function draw() {
+      const q = G.q;
+      const L = { s: "Situation", m: "Multiple choice", i: "Identification", b: "True or false" }[q.k];
+      const o = q.k === "b" ? ["True", "False"] : (q.o || []);
+      const C = q.k === "b" ? [3, 0] : [0, 1, 2, 3];
+      const SHAPES = [ICONS.tri, ICONS.dia, ICONS.cir, ICONS.sqr];
+      G.o = o;
+
+      const sessionPct = G.tot < 1e9 ? Math.round((G.n / G.tot) * 100) : 100;
+
+      app(`
+        <div id="hud">${hud()}</div>
+        ${sel.tm
+          ? '<div class="prog-wrap"><i id="tb" style="width:100%"></i></div>'
+          : (G.tot < 1e9 ? `<div class="prog-wrap"><i style="width:${sessionPct}%"></i></div>` : "")}
+        <div class="anim-in">
+          <div class="tag-row">
+            <div class="tag-group">
+              <span class="tag-pill kind">${ICONS["y_" + q.k]} ${L}</span>
+              <span class="tag-pill">${ICONS["t_" + q.t]} ${T[q.t]}</span>
+            </div>
+            <span class="kbd-hint">${q.k === "i" ? "Press Enter to submit" : "Keys 1–" + o.length}</span>
+          </div>
+
+          <div class="q-card">${q.q}</div>
+
+          ${q.k === "i"
+            ? `<input id="ans" class="id-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Type your answer..." onkeydown="if(event.key==='Enter'){event.preventDefault();ck();}">
+               <button class="go" id="ckb" onclick="ck()">${ICONS.check} Check Answer</button>`
+            : `<div class="opts">
+                ${o.map((x, i) => `
+                  <button class="op o${C[i]}" onclick="pk(${i})">
+                    <span class="op-shape">${SHAPES[i]}</span>
+                    <span class="op-txt">${x}</span>
+                    <span class="op-key">${i + 1}</span>
+                  </button>
+                `).join("")}
+              </div>`
+          }
+          <div id="fb" aria-live="polite"></div>
+        </div>
+      `);
+
+      if (q.k === "i") {
+        const inp = $("#ans");
+        if (inp) setTimeout(() => inp.focus(), 60);
+      }
+    }
+
+    function tick() {
+      if (!G || G.done) { clearInterval(tmr); return; }
+      const l = 20 - (Date.now() - G.t0) / 1000;
+      const barEl = $("#tb");
+      if (barEl) {
+        barEl.style.width = Math.max(l, 0) * 5 + "%";
+        barEl.classList.toggle("warn", l <= 10 && l > 5);
+        barEl.classList.toggle("crit", l <= 5);
+      }
+      if (l <= 0) grade(0, -1);
+    }
+
+    function pk(i) {
+      if (!G || G.done) return;
+      const q = G.q;
+      const correct = q.k === "b" ? (i === 0) === !!q.a : G.o[i] === q.a;
+      grade(correct, i);
+    }
+
+    function ck() {
+      if (!G || G.done) return;
+      const inp = $("#ans");
+      if (!inp) return;
+      grade(hit(inp.value, G.q.a), -2);
+    }
+
+    function grade(ok, i) {
+      if (!G || G.done) return;
+      G.done = 1;
+      clearInterval(tmr);
+      tmr = null;
+
+      const q = G.q;
+      let gain = 0;
+      let streakBonus = 0;
+      let speedBonus = 0;
+      const left = sel.tm ? Math.max(0, 20 - (Date.now() - G.t0) / 1000) : 0;
+      const t = G.tp[q.t] = G.tp[q.t] || [0, 0];
+      const ans = q.k === "b" ? (q.a ? "True" : "False") : q.a.split("|")[0];
+
+      G.n++;
+      t[1]++;
+
+      if (ok) {
+        t[0]++;
+        streakBonus = Math.min(G.st, 5) * 20;
+        speedBonus = Math.round(left * 5);
+        gain = 100 + streakBonus + speedBonus;
+        G.pts += gain;
+        G.st++;
+        G.ok++;
+        G.bs = Math.max(G.bs, G.st);
+        sfx("ok", G.st);
+        if (G.st >= 3) burstConfetti(22 + Math.min(G.st, 6) * 4, 0.5);
+      } else {
+        G.st = 0;
+        if (sel.l) G.hp--;
+        sfx("bad");
+      }
+
+      document.querySelectorAll(".op").forEach((b, k) => {
+        b.disabled = true;
+        const c = q.k === "b" ? (k === 0) === !!q.a : G.o[k] === q.a;
+        b.classList.add(c ? "right" : k === i ? "wrong" : "dim");
+      });
+
+      if (q.k === "i") {
+        const inp = $("#ans");
+        if (inp) {
+          inp.classList.add(ok ? "ok" : "no");
+          inp.disabled = true;
+        }
+        const btn = $("#ckb");
+        if (btn) btn.remove();
+      }
+
+      const hudEl = $("#hud");
+      if (hudEl) hudEl.innerHTML = hud(ok ? `+${gain}` : "");
+
+      const end = G.n >= G.tot || G.hp <= 0;
+
+      const breakdown = ok
+        ? `<span class="fb-pts">+100${streakBonus ? ` +${streakBonus} streak` : ""}${speedBonus ? ` +${speedBonus} speed` : ""}</span>`
+        : "";
+
+      const fb = $("#fb");
+      if (fb) {
+        fb.innerHTML = `
+          <div class="fb ${ok ? "ok" : "no"}">
+            <div class="fb-head">
+              <span class="fb-title">
+                ${ok ? ICONS.check : i === -1 ? ICONS.clock : ICONS.x}
+                <span>${ok ? "Correct" : i === -1 ? "Time Expired" : "Incorrect"}</span>
+              </span>
+              ${breakdown}
+            </div>
+            ${ok ? "" : `<div class="fb-body" style="margin-bottom:6px">Correct answer: <strong>${ans}</strong></div>`}
+            <div class="fb-body">${q.e}</div>
+          </div>
+          <button class="go" id="next-btn" onclick="sfx('click');nx()">
+            <span>${end ? "View Session Summary" : "Continue"}</span> ${ICONS.arrowRight}
+          </button>
+        `;
+        fb.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    }
+
+    document.addEventListener("keydown", e => {
+      if (!G || !G.q) return;
+      const tag = (e.target && e.target.tagName || "").toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select") return;
+
+      if (G.done) {
+        if (e.key === "Enter" || e.key === " ") {
+          // Let a focused button handle its own activation (prevents double-advance)
+          if (e.target && e.target.closest && e.target.closest("button")) return;
+          e.preventDefault();
+          sfx("click");
+          nx();
+        }
+        return;
+      }
+
+      if (G.q.k === "i") return;
+
+      const k = parseInt(e.key, 10) - 1;
+      if (k >= 0 && k < G.o.length) {
+        e.preventDefault();
+        pk(k);
+      }
+    });
+
+    /* ========================================================================
+       9. SCREEN 4: RESULTS SUMMARY
+       ======================================================================== */
+    const rank = () => Object.keys(U).sort((a, b) => DB.u[b].xp - DB.u[a].xp);
+
+    function fin() {
+      clearTimers();
+      if (!G) return;
+      if (!G.n) {
+        G = null;
+        return home();
+      }
+
+      currentScreen = "fin";
+      const d = DB.u[cur];
+      const p = Math.round((G.ok / G.n) * 100);
+      d.xp += G.pts;
+      d.g++;
+      d.c += G.ok;
+      d.n += G.n;
+      d.bs = Math.max(d.bs, G.bs);
+      d.bg = Math.max(d.bg, G.pts);
+
+      for (const k in G.tp) {
+        const t = d.t[k] = d.t[k] || [0, 0];
+        t[0] += G.tp[k][0];
+        t[1] += G.tp[k][1];
+      }
+      d.h.push([Date.now(), G.pts, p]);
+      d.h = d.h.slice(-10);
+      save();
+
+      if (p >= 60) {
+        sfx("win");
+        burstConfetti(50, 0.35);
+      }
+
+      const ti = p >= 90 ? "Master Communicator" : p >= 70 ? "Skilled Speaker" : p >= 50 ? "Rising Communicator" : "Keep Practicing";
+      const g = G;
+      G = null;
+
+      app(`
+        <div class="anim-in">
+          ${bar("")}
+          <div class="sec c">
+            <div class="crest-hero">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                <path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+              </svg>
+            </div>
+            <h2>${ti}</h2>
+            <div class="big mono">+${g.pts}</div>
+            <p class="m" style="margin:4px 0 12px">
+              <strong>${g.ok}</strong> of <strong>${g.n}</strong> correct (${p}%) · Best streak: <strong>${g.bs}x</strong>
+            </p>
+            <div class="rank-badge">
+              ${ICONS.trophy}
+              <span>Rank <strong>#${rank().indexOf(cur) + 1}</strong> · <span class="mono">${d.xp} XP</span> · Level ${lv(d)}</span>
+            </div>
+          </div>
+
+          <div class="sec">
+            <div class="sec-head">
+              <h3>Module Accuracy</h3>
+            </div>
+            ${Object.keys(g.tp).map(k => mb(`${ICONS["t_" + k]} <span>${T[k]}</span>`, g.tp[k])).join("")}
+          </div>
+
+          <button class="go" onclick="sfx('click');start()">${ICONS.refresh} Play Again</button>
+          <button class="go sec-btn" onclick="sfx('click');home()">${ICONS.sliders} Change Setup</button>
+          <button class="go sec-btn" onclick="sfx('click');board()">${ICONS.trophy} Open Leaderboard</button>
+        </div>
+      `);
+    }
+
+    const mb = (l, t) => {
+      const p = t[1] ? Math.round((t[0] / t[1]) * 100) : 0;
+      const barColor = p >= 80 ? "var(--ok)" : p >= 50 ? "var(--pri)" : t[1] ? "var(--gold)" : "var(--mut)";
+      return `
+        <div class="br">
+          <span class="br-lbl">${l}</span>
+          <div><i style="width:${p}%;background:${barColor}"></i></div>
+          <b>${t[1] ? p + "%" : "–"}</b>
+        </div>
+      `;
+    };
+
+    /* ========================================================================
+       10. SCREEN 5: LEADERBOARD & ANALYTICS
+       ======================================================================== */
+    function board(s) {
+      currentScreen = "board";
+      clearTimers();
+      if (typeof s === "string") {
+        sfx("click");
+        SB = s;
+      }
+      OP = OP || cur;
+
+      const L = Object.keys(U).sort((a, b) => {
+        const d = SB === "xp"
+          ? DB.u[b].xp - DB.u[a].xp
+          : SB === "acc"
+            ? acc(DB.u[b]) - acc(DB.u[a])
+            : DB.u[b].bs - DB.u[a].bs;
+        return d || DB.u[b].xp - DB.u[a].xp;
+      });
+
+      const V = {
+        xp: d => d.xp + " XP",
+        acc: d => acc(d) + "%",
+        bs: d => d.bs + "x"
+      };
+
+      app(`
+        <div class="anim-in">
+          ${bar("board")}
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+            <h2>Leaderboard</h2>
+            <div class="chips">
+              ${[
+                ["xp", ICONS.spark, "Total XP"],
+                ["acc", ICONS.y_m, "Accuracy"],
+                ["bs", ICONS.flame, "Streak"]
+              ].map(x =>
+                `<button class="chip ${SB === x[0] ? "on" : ""}" onclick="board('${x[0]}')" aria-pressed="${SB === x[0]}">${x[1]} <span>${x[2]}</span></button>`
+              ).join("")}
+            </div>
+          </div>
+
+          ${L.map((k, i) => {
+            const d = DB.u[k];
+            const o = OP === k;
+            return `
+              <button class="row ${k === cur ? "me" : ""} rk${i}" onclick="sfx('click');OP=OP==='${k}'?null:'${k}';board()" aria-expanded="${o}">
+                ${medalBadge(i)}
+                <span class="av" style="--c:${U[k][1]}">${MASCOTS[k]}</span>
+                <span class="row-name">
+                  <strong>${U[k][0]}</strong>${k === cur ? '<span class="you-pill">YOU</span>' : ""}
+                  <small>Level ${lv(d)} · ${d.g} sessions · ${acc(d)}% accurate</small>
+                </span>
+                <span class="pt">${V[SB](d)}</span>
+              </button>
+              ${o ? `
+                <div class="trk">
+                  <div class="st">
+                    <div><b>${d.xp}</b><small>Total XP</small></div>
+                    <div><b>${d.n}</b><small>Answered</small></div>
+                    <div><b>${d.bs}x</b><small>Best Streak</small></div>
+                    <div><b>${d.bg}</b><small>Best Round</small></div>
+                  </div>
+                  <h3>Module Mastery</h3>
+                  ${Object.keys(T).map(t => mb(`${ICONS["t_" + t]} <span>${T[t]}</span>`, d.t[t] || [0, 0])).join("")}
+                  <h3 style="margin-top:16px">Recent Sessions (${d.h.length})</h3>
+                  ${d.h.length
+                    ? `<div class="hist">${d.h.map(h =>
+                        `<i style="height:${Math.max(h[2], 8)}%" title="${h[1]} pts · ${h[2]}% accuracy"></i>`
+                      ).join("")}</div>`
+                    : '<p class="m" style="font-size:13.5px;margin:6px 0 0">No sessions recorded yet. Complete a round to chart progress.</p>'
+                  }
+                </div>
+              ` : ""}
+            `;
+          }).join("")}
+        </div>
+      `);
+    }
+
+    /* ========================================================================
+       11. SCREEN 6: STUDY GUIDE & FLASHCARDS
+       ======================================================================== */
+    function getFilteredFacts() {
+      const q = studyQuery.trim().toLowerCase();
+      return F.filter(f =>
+        !q ||
+        f[0].toLowerCase().includes(q) ||
+        f[1].toLowerCase().includes(q) ||
+        T[f[2]].toLowerCase().includes(q)
+      );
+    }
+
+    function setStudyMode(m) {
+      sfx("click");
+      studyMode = m;
+      cardIdx = 0;
+      cardFlipped = false;
+      study();
+    }
+
+    function flipCard() {
+      sfx("flip");
+      cardFlipped = !cardFlipped;
+      renderStudyBody();
+    }
+
+    function stepCard(delta) {
+      const list = getFilteredFacts();
+      if (!list.length) return;
+      sfx("click");
+      cardIdx = (cardIdx + delta + list.length) % list.length;
+      cardFlipped = false;
+      renderStudyBody();
+    }
+
+    function filterStudy(val) {
+      studyQuery = val;
+      cardIdx = 0;
+      cardFlipped = false;
+      const clr = $("#clear-search-btn");
+      if (clr) clr.style.display = studyQuery ? "grid" : "none";
+      renderStudyBody();
+    }
+
+    function clearStudySearch() {
+      const inp = $("#study-search");
+      if (inp) inp.value = "";
+      filterStudy("");
+      if (inp) inp.focus();
+    }
+
+    function study() {
+      currentScreen = "study";
+      clearTimers();
+      G = null;
+
+      app(`
+        <div class="anim-in">
+          ${bar("study")}
+          <h2 style="margin-bottom:4px">Study Guide</h2>
+          <p class="m" style="margin:0;font-size:14px">Every fact, mnemonic and note from the seven modules — searchable and flip-ready.</p>
+
+          <div class="study-toolbar">
+            <div class="search-wrap">
+              <span class="search-icon">${ICONS.search}</span>
+              <input id="study-search" class="search-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+                     placeholder="Search facts, answers or topics…" value="${esc(studyQuery)}" oninput="filterStudy(this.value)">
+              <button id="clear-search-btn" class="clear-search" style="display:${studyQuery ? "grid" : "none"}"
+                      onclick="clearStudySearch()" aria-label="Clear search">${ICONS.x}</button>
+            </div>
+            <div class="mode-switch" role="group" aria-label="Study view mode">
+              <button class="${studyMode === "list" ? "on" : ""}" onclick="setStudyMode('list')" aria-pressed="${studyMode === "list"}">${ICONS.list} List</button>
+              <button class="${studyMode === "cards" ? "on" : ""}" onclick="setStudyMode('cards')" aria-pressed="${studyMode === "cards"}">${ICONS.layers} Cards</button>
+            </div>
+          </div>
+
+          <div id="study-content"></div>
+        </div>
+      `);
+
+      renderStudyBody();
+    }
+
+    function renderStudyBody() {
+      const container = $("#study-content");
+      if (!container) return;
+
+      const q = studyQuery.trim().toLowerCase();
+
+      if (studyMode === "cards") {
+        const list = getFilteredFacts();
+        if (!list.length) {
+          container.innerHTML = `<div class="sec c"><p class="m">No flashcards matched “<strong>${esc(studyQuery)}</strong>”.</p></div>`;
+          return;
+        }
+        if (cardIdx >= list.length) cardIdx = 0;
+        const item = list[cardIdx];
+        const answer = item[1].split("|")[0];
+
+        container.innerHTML = `
+          <div class="fc-stage">
+            <div class="fc-card ${cardFlipped ? "flipped" : ""}" onclick="flipCard()" role="button" tabindex="0"
+                 aria-label="Flashcard ${cardIdx + 1} of ${list.length}. Press Enter or Space to flip."
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();flipCard();}">
+              <div style="display:flex;justify-content:space-between;width:100%;align-items:center;gap:8px;flex-wrap:wrap">
+                <span class="tag-pill">${ICONS["t_" + item[2]]} ${T[item[2]]}</span>
+                <span class="fc-side-tag">${cardFlipped ? "Answer" : "Prompt"} · ${cardIdx + 1}/${list.length}</span>
+              </div>
+              <div class="fc-main">${cardFlipped ? answer : item[0]}</div>
+              <span class="m" style="font-size:12.5px;display:inline-flex;align-items:center;gap:6px">
+                ${ICONS.flip} Tap card to flip
+              </span>
+            </div>
+            <div class="fc-controls">
+              <button class="ghost" onclick="stepCard(-1)" aria-label="Previous card">${ICONS.arrowLeft} Prev</button>
+              <button class="ghost" onclick="flipCard()">${ICONS.flip} Flip</button>
+              <button class="ghost" onclick="stepCard(1)" aria-label="Next card">Next ${ICONS.arrowRight}</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const filteredMn = MN.filter(m => !q || m[0].toLowerCase().includes(q) || m[1].toLowerCase().includes(q));
+      let html = "";
+
+      if (filteredMn.length) {
+        html += `
+          <div class="sec">
+            <div class="sec-head"><h3>${ICONS.spark} <span>Quick-Recall Mnemonics</span></h3></div>
+            ${filteredMn.map(m => `
+              <div class="fact">
+                <span><strong>${m[0]}</strong></span>
+                <span class="fact-ans">${m[1]}</span>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      Object.keys(T).forEach(k => {
+        const topicMatch = !q || T[k].toLowerCase().includes(q);
+        const facts = F.filter(f => f[2] === k && (topicMatch || f[0].toLowerCase().includes(q) || f[1].toLowerCase().includes(q)));
+        const notes = (NT[k] || []).filter(n => topicMatch || n.toLowerCase().includes(q));
+
+        if (facts.length || notes.length) {
+          html += `
+            <div class="sec">
+              <div class="sec-head"><h3>${ICONS["t_" + k]} <span>${T[k]}</span></h3></div>
+              ${facts.map(f => `
+                <div class="fact">
+                  <span>${f[0]}</span>
+                  <span class="fact-ans">${f[1].split("|")[0]}</span>
+                </div>
+              `).join("")}
+              ${notes.map(n => `
+                <div class="note-row">${ICONS.bulb} <span>${n}</span></div>
+              `).join("")}
+            </div>
+          `;
+        }
+      });
+
+      if (!html) {
+        html = `<div class="sec c"><p class="m">No results for “<strong>${esc(studyQuery)}</strong>”. Try another keyword.</p></div>`;
+      }
+
+      container.innerHTML = html;
+    }
+
+    /* ========================================================================
+       12. GLOBAL EXPORTS & BOOT
+       ======================================================================== */
+    // Expose handlers used by inline attributes (keeps them out of the global
+    // namespace for everything else while remaining callable from HTML).
+    window.pick = pick;
+    window.sign = sign;
+    window.home = home;
+    window.start = start;
+    window.nx = nx;
+    window.pk = pk;
+    window.ck = ck;
+    window.fin = fin;
+    window.board = board;
+    window.study = study;
+    window.tg = tg;
+    window.toggleAllTopics = toggleAllTopics;
+    window.toggleMute = toggleMute;
+    window.toggleTheme = toggleTheme;
+    window.sfx = sfx;
+    window.flipCard = flipCard;
+    window.stepCard = stepCard;
+    window.filterStudy = filterStudy;
+    window.setStudyMode = setStudyMode;
+    window.clearStudySearch = clearStudySearch;
+
+    // Dark-mode preference change (when the user has no explicit override)
+    try {
+      const mq = window.matchMedia("(prefers-color-scheme: dark)");
+      const onScheme = () => {
+        if (!document.documentElement.getAttribute("data-theme")) syncUtilBtns();
+      };
+      if (mq.addEventListener) mq.addEventListener("change", onScheme);
+      else if (mq.addListener) mq.addListener(onScheme);
+    } catch (e) {}
+
+    // Keep the canvas crisp after viewport changes (mobile address bar, etc.)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", resizeFx);
+    }
+
+    // Boot
+    pick();
+  </script>
+</body>
+</html>
