@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Purposive Communication Endless Quest</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F2FC;--card:#fff;--ink:#1B1740;--mut:#6B678F;--pri:#4F3FE0;--ok:#0E9F6E;--okbg:#DDF7EC;--bad:#D93C47;--badbg:#FDE4E6;--line:#DAD6F2;--onp:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141230;--card:#1E1B45;--ink:#EEEBFF;--mut:#A29EC9;--pri:#8F82FF;--ok:#3DD6A0;--okbg:#10382E;--bad:#FF7B84;--badbg:#431D26;--line:#363170;--onp:#141230}}
+:root[data-theme="dark"]{--bg:#141230;--card:#1E1B45;--ink:#EEEBFF;--mut:#A29EC9;--pri:#8F82FF;--ok:#3DD6A0;--okbg:#10382E;--bad:#FF7B84;--badbg:#431D26;--line:#363170;--onp:#141230}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 17px/1.5 Nunito,system-ui,sans-serif;min-height:100%}
+#app{max-width:640px;margin:0 auto;padding:16px}
+h1,h2,.f{font-family:Fredoka,system-ui,sans-serif;font-weight:600;margin:0}
+.hud{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;font-family:Fredoka,sans-serif;font-weight:600}
+.pill{background:var(--card);border:2px solid var(--line);border-radius:99px;padding:2px 12px;font-size:16px}
+.bar{height:12px;background:var(--line);border-radius:9px;margin:12px 0;overflow:hidden}.bar i{display:block;height:100%;background:var(--pri);transition:width .4s}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:20px;margin-top:8px}
+.tag{color:var(--pri);font-weight:700;font-size:14px;margin-bottom:6px}
+.q{font-size:19px;margin:6px 0 16px}.q b{background:var(--line);border-radius:6px;padding:0 10px}
+button{font:inherit;cursor:pointer;color:var(--ink)}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.opt:hover:not(:disabled){border-color:var(--pri)}.opt.ok{background:var(--okbg);border-color:var(--ok)}.opt.no{background:var(--badbg);border-color:var(--bad)}
+.opt.sel{border-color:var(--pri);background:var(--line)}
+.go{display:block;width:100%;background:var(--pri);color:var(--onp);border:0;border-bottom:4px solid rgba(0,0,0,.28);border-radius:14px;padding:12px;font-family:Fredoka,sans-serif;font-weight:600;font-size:18px;margin-top:12px}
+.fb{border-radius:14px;padding:12px 14px;margin-top:6px}.fb.ok{background:var(--okbg)}.fb.no{background:var(--badbg)}.fb .f{font-size:18px}
+.row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}.row span{flex:1 1 200px}
+select{font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:10px;padding:8px;flex:1 1 150px;max-width:100%}
+select.ok{border-color:var(--ok)}select.no{border-color:var(--bad)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0}.chips .opt{width:auto;margin:0;padding:6px 14px;border-bottom-width:2px}
+.big{font-size:54px;text-align:center}.c{text-align:center}.mut{color:var(--mut)}
+:focus-visible{outline:3px solid #F5B400;outline-offset:2px}
+</style></head><body><div id="app"></div>
+<script>
+var NM=["Ana","Marco","Liza","Jun","Carla","Migo","Dani","Rico","Tessa","Paolo","Bea","Kuya Ben","Ms. Cruz","Sir Lou","Hana","Ian","Joy","Nico"];
+var G=[
+["process","What is happening in this situation?",[
+["Physical noise","External sound like traffic or a loud radio interferes.",["{n} presents while a loud generator runs outside the room.","{n} can’t hear the caller because of busy traffic."]],
+["Psychological noise","Negative attitudes and internal thoughts are internal noise.",["{n} replays a family argument and misses the lecture in a silent room.","{n} dislikes the speaker, so {n} stops listening before the talk starts."]],
+["Positive feedback","Feedback is any response, and this one signals success.",["{n} nods and smiles, then asks a follow-up that shows full understanding.","The client says “Yes, I understand, please continue” after {n}’s pitch."]],
+["Negative feedback","Perplexed looks and “Could you repeat that?” show the message missed.",["After {n} explains, the class frowns and asks “Could you repeat that?”","{n}’s message gets only a perplexed look."]],
+["Encoding","Encoding is turning ideas into words and symbols for the audience.",["Before speaking, {n} turns ideas in mind into words that fit the audience.","{n} drafts an email, choosing words the reader will understand."]],
+["Decoding","Decoding is interpreting symbols using experience and context.",["{n} hears “Meet me at the usual place” and works out its meaning from past experience.","{n} reads a memo and assigns meaning based on prior knowledge."]]]],
+["process","Which type of channel is this?",[
+["Two-way, face-to-face","Interviews, oral reports, and speeches allow immediate feedback.",["{n} attends a job interview.","{n} gives an oral report and takes questions on the spot."]],
+["Two-way, not face-to-face","Phone calls and intercompany announcements are two-way without being in person.",["{n} calls a client by phone.","{n} joins a teleconference with replies from staff on the line."]],
+["One-way, not face-to-face","Letters, memos, reports, and press releases flow one way.",["{n} emails a memo to all staff.","{n} releases a printed press statement."]]]],
+["principles","Which principle of communication is shown?",[
+["A package of signals","Verbal and nonverbal behaviors combine, and here they conflict.",["{n} says “I’m fine” in a trembling voice with teary eyes.","{n} praises a coworker aloud while rolling their eyes."]],
+["Irreversible and unrepeatable","Once sent, a message can’t be taken back or duplicated.",["{n} sends a hurtful message and can’t take it back.","{n} blurts out a secret in public and says “forget it,” but it’s too late."]],
+["Ambiguous","One message with more than one possible meaning.",["{n} says “see you soon”; one friend expects 5 minutes and another a day.","{n} says “that was sick!” and the listener can’t tell if it’s praise."]],
+["Punctuated","Circular events get divided into causes and effects.",["{n} and a roommate each blame the other for starting the argument.","In a long feud, both sides say the other struck first."]],
+["A process of adjustment","No two people use identical signals, so adjustment is needed.",["{n} uses simpler words after noticing a visitor speaks another dialect.","{n} drops jargon to match the client’s vocabulary."]],
+["Transactional","Everyone is both speaker and listener, and elements keep changing.",["{n} tells a story, adjusting midway as a friend reacts and interrupts.","{n} and a classmate send and receive messages at the same time."]]]],
+["principles","What is the general purpose of this communication?",[
+["To learn","Acquire knowledge of others, the world, and ourselves.",["{n} interviews a veteran nurse to understand the job.","{n} asks questions in class to understand a topic."]],
+["To relate","Establish relationships with others.",["{n} introduces themselves to a new neighbor to start a friendship.","{n} joins a club and chats to build relationships."]],
+["To help","Assist others by listening and offering solutions.",["{n} listens to a friend’s problem and suggests solutions.","{n} gives directions to a lost tourist."]],
+["To influence","Strengthen or change attitudes or behaviors.",["{n} pitches an idea to change the team’s mind.","{n} campaigns for classmates to start recycling."]],
+["To entertain","Enjoy the experience of the moment.",["{n} tells jokes at a party just for fun.","{n} shares funny stories with friends over lunch."]],
+["To interact","Engage with others as individuals.",["{n} chats casually with a stranger at a bus stop, as one individual to another.","{n} stops to talk with a classmate they just met."]]]],
+["ethics","Which does this situation show?",[
+["Truthful, full disclosure","Ethical messages include all relevant information.",["{n} tells a client about a product’s limits along with its strengths.","{n} reports all costs, not just the attractive ones."]],
+["Clear, understandable language","Use the reader’s vocabulary and exact words.",["{n} explains the policy in words the customer knows, avoiding jargon.","{n} picks words that convey exactly the intended meaning."]],
+["Tactful, positive wording","Unpleasant ideas are stated tactfully to protect self-worth.",["{n} breaks bad news kindly to protect the receiver’s self-worth.","{n} politely rejects an applicant and preserves goodwill."]],
+["Confirming language","Acknowledge others, ask questions, respond directly.",["{n} says “That was a great idea, John.”","{n} acknowledges a coworker and answers their question directly."]],
+["Disconfirming language","Evaluating or judging others negatively.",["{n} says “That’s a stupid idea.”","{n} dismisses a teammate’s proposal in front of everyone."]]]],
+["verbal","Why is oral communication the better choice here?",[
+["The receiver is uninterested","Oral delivery gets and keeps attention.",["{n} must announce a policy staff rarely care about.","{n}’s audience tunes out written notices."]],
+["Feedback is important","Facial expressions and questions are easy to observe.",["{n} must see faces and ask questions to confirm instructions are understood.","{n} needs instant reactions to a new plan."]],
+["Emotions are high","It lets both sides let off steam and build understanding.",["Employees are furious about a schedule change, and {n} must calm things down.","Customers are upset, and {n} needs to cool tempers."]],
+["The receiver is too busy to read","Speaking captures immediate attention.",["The manager never has time to read {n}’s long emails.","{n}’s boss skips every written report."]],
+["Need to persuade","Offers flexibility, emphasis, and removes resistance.",["{n} wants to convince the board to adopt a new plan.","{n} must win over a reluctant client."]],
+["Discussion is needed","Complicated subjects need discussion to ensure understanding.",["{n}’s subject is complicated and needs back-and-forth.","{n} and the team must work through a tricky policy."]],
+["Criticism is involved","Less threatening when not formalized in writing.",["{n} must correct an employee’s mistake without causing resentment.","{n} has to give negative feedback on a draft."]],
+["The receiver prefers one-to-one contact","Honor the receiver’s preference.",["A client always prefers personal contact with {n}.","{n}’s supervisor likes private, in-person talks."]]]],
+["nonverbal","How does the nonverbal cue relate to the words?",[
+["Complements","Gestures clarify the verbal message.",["{n} points left while saying “the exit is that way.”","{n} uses hand gestures to clarify directions."]],
+["Contradicts","Incongruent: words and body disagree.",["{n} shouts “I am NOT angry!” with clenched fists.","{n} says “I’m relaxed” while tapping nervously."]],
+["Repeats","It reinforces the words.",["{n} says “Stop!” and raises a hand.","{n} says “three” and holds up three fingers."]],
+["Substitutes","It replaces words.",["Asked “Ready?”, {n} only nods.","{n} gives a thumbs-up instead of saying “good.”"]],
+["Regulates interaction","Turn-taking and start/stop cues.",["{n} lifts a finger and leans in to request a turn to speak.","{n} makes eye contact with a student to invite an answer."]]]],
+["nonverbal","Which type of nonverbal communication is this?",[
+["Body movement (kinesics)","Messages through eyes, face, gestures, and posture.",["{n} crosses arms and avoids eye contact.","{n} smiles and gestures during a speech."]],
+["Physical characteristics","Attractiveness, body shape, size, color, smell.",["Interviewers judge {n}’s credibility by attractiveness.","People assume {n}, who is tall and thin, is tense and meticulous."]],
+["Touch","The most powerful and basic form.",["{n} gives a firm handshake at a formal first meeting.","{n} pats a grieving friend’s shoulder."]],
+["Artefacts","Clothing, badges, tattoos, jewelry, and gadgets.",["{n}’s uniform, badge, and tattoo shape first impressions.","{n} chooses jewelry that reflects self-image."]],
+["Formal time","Scheduled exchanges, like appointments.",["{n} books a 2 PM appointment with a lawyer.","{n} schedules a haircut."]],
+["Informal time","Spontaneous and unscheduled.",["{n} drops by a friend’s house unannounced.","{n} chats spontaneously with a coworker in the hallway."]]]],
+["nonverbal","What does this body language usually signal?",[
+["Defensiveness or a closed attitude","Crossed arms or legs is a negative gesture.",["{n} sits with arms and legs crossed.","{n} folds both arms during feedback."]],
+["Confidence and authority","Upright posture.",["{n} stands tall with an upright posture.","{n} sits straight in the boardroom."]],
+["Impatience or nervousness","Rapid tapping of hands or feet.",["{n} taps feet rapidly during the meeting.","{n} drums fingers on the desk."]],
+["Insecurity or dishonesty","Constantly touching the face or neck.",["{n} keeps touching their face and neck while talking.","{n} rubs their neck throughout the answer."]],
+["Respect, interest, and openness","Frequent, direct eye contact.",["{n} keeps frequent direct eye contact with the speaker.","{n} looks the interviewer in the eye."]]]]
+];
+var F=[
+["process","The sender translates ideas into symbols in a step called ___.","encoding",["decoding","feedback","noise"]],
+["process","The receiver assigns meaning to symbols by ___.","decoding",["encoding","channeling","interrupting"]],
+["process","Anything that interferes with the communication process is called ___.","noise",["feedback","channel","encoding"]],
+["process","Even a non-response can be interpreted as ___.","feedback",["encoding","noise","a channel"]],
+["process","Sensitive or unpleasant messages are better delivered by a ___ meeting.","face-to-face",["written","mass email","voicemail"]],
+["principles","Because no two people use identical signals, communication is a process of ___.","adjustment",["punctuation","ambiguity","entertainment"]],
+["principles","Once sent, a message is irreversible and ___.","unrepeatable",["ambiguous","punctuated","transactional"]],
+["principles","Combining verbal and nonverbal behavior makes communication a ___ of signals.","package",["chain","system","code"]],
+["ethics","Your word, written or spoken, establishes a binding ___.","contract",["debate","mood","habit"]],
+["ethics","Ethical communication states unpleasant ideas ___ and positively.","tactfully",["bluntly","rarely","slowly"]],
+["ethics","Rhetorical sensitivity uses ___ language instead of disconfirming language.","confirming",["technical","formal","passive"]],
+["verbal","Language is embedded in ___.","culture",["noise","time","hierarchy"]],
+["verbal","Saying “I’m sorry” aloud can correct a wrong more effectively than ___.","action",["silence","text","gifts"]],
+["nonverbal","When verbal and nonverbal messages match, they are ___.","congruent",["incongruent","ambiguous","punctuated"]],
+["nonverbal","In face-to-face talk, over ___% of information passes through body language.","65",["25","45","85"]],
+["nonverbal","___ is the first and most powerful form of nonverbal communication we learn.","Touch",["Time","Smell","Dress"]],
+["nonverbal","The five sensory forms are visual, auditory, tactile, olfactory, and ___.","gustatory",["kinesic","proxemic","vocal"]],
+["nonverbal","Upright posture shows confidence and ___.","authority",["boredom","timidity","flirting"]],
+["nonverbal","Rapid tapping of feet or hands signals impatience, nervousness, and ___.","intimidation",["respect","humor","calm"]]
+];
+var g,S={ai:false,cat:"all"},recent=[],aiq=[],smp=null,app=document.getElementById("app");
+function sh(a){return a.map(function(x){return[Math.random(),x]}).sort(function(x,y){return x[0]-y[0]}).map(function(x){return x[1]})}
+function rp(a){return a[Math.floor(Math.random()*a.length)]}
+function inCat(c){return S.cat=="all"||S.cat==c}
+function mk(){
+ var gs=G.filter(function(x){return inCat(x[0])}),fs=F.filter(function(x){return inCat(x[0])}),r=Math.random(),q,tries=0;
+ do{ if(r<.18&&fs.length){var f=rp(fs);q={t:"f",q:f[1],o:sh([f[2]].concat(f[3])),a:f[2],e:"Answer: "+f[2]+"."}}
+ else{var gr=rp(gs),cs=gr[2],c=rp(cs),n=rp(NM),sc=rp(c[2]).replace(/\{n\}/g,n);
+  if(r<.5||cs.length<4){q={t:"m",q:gr[1]+"<br><br>"+sc,o:sh(sh(cs.filter(function(x){return x!=c})).slice(0,3).map(function(x){return x[0]}).concat([c[0]])),a:c[0],e:c[1]}}
+  else if(r<.75){var tr=Math.random()<.5,lb=tr?c[0]:rp(cs.filter(function(x){return x!=c}))[0];q={t:"t",q:sc+"<br><br>Claim: this situation shows <b>"+lb+"</b>.",a:tr,e:(tr?"True. ":"False. It shows “"+c[0]+"”. ")+c[1]}}
+  else{var pc=sh(cs).slice(0,4),ns=sh(NM);q={t:"p",q:"Match each situation to what it shows.",pairs:pc.map(function(x,i){return[x[0],rp(x[2]).replace(/\{n\}/g,ns[i])]}),all:pc.map(function(x){return x[0]}),e:pc.map(function(x){return x[0]+": "+x[1]}).join("<br>")}}}
+ tries++}while(recent.indexOf(q.q)>=0&&tries<8);
+ recent.push(q.q);if(recent.length>60)recent.shift();return q}
+function hud(){var lv=Math.floor(g.xp/100)+1;return '<div class="hud"><span class="pill">Level '+lv+'</span><span class="pill">🔥 '+g.st+'</span><span class="pill">⭐ '+g.xp+' XP</span><span class="pill">'+'❤️'.repeat(g.hp)+'🖤'.repeat(3-g.hp)+'</span></div><div class="bar"><i style="width:'+(g.xp%100)+'%"></i></div>'}
+function home(){var cats=[["all","All topics"],["process","Process"],["principles","Principles"],["ethics","Ethics"],["verbal","Verbal"],["nonverbal","Nonverbal"]];
+ app.innerHTML='<div class="card c"><div class="big">♾️</div><h1>Endless Practice Quest</h1><p class="mut">Questions are generated fresh every time. You have 3 lives, and 5 correct in a row wins one back. Survive as long as you can.</p><div class="chips">'+cats.map(function(c){return '<button class="opt'+(S.cat==c[0]?" sel":"")+'" onclick="S.cat=\''+c[0]+'\';home()">'+c[1]+'</button>'}).join('')+'</div>'+(smp?'<div class="chips"><button class="opt'+(S.ai?" sel":"")+'" onclick="S.ai=!S.ai;home()">✨ Claude-written questions: '+(S.ai?"ON":"OFF")+'</button></div>':'')+'<button class="go" onclick="start()">Start</button></div>'}
+function start(){g={hp:3,xp:0,st:0,n:0,ok:0,best:0};nxt()}
+async function nxt(){var q;
+ if(S.ai&&smp){if(!aiq.length){app.innerHTML='<div class="card c"><div class="big">✨</div><p>Claude is writing new situations…</p></div>';try{var r=await smp.json("Write 5 NEW real-life situational multiple-choice questions for a Purposive Communication course (communication process, principles, ethics, verbal and nonverbal communication"+(S.cat!="all"?", focus: "+S.cat:"")+"). Vary names, workplaces, and campus settings. Never repeat earlier ones (seed "+Math.random()+"). Return only a JSON array of objects: {\"q\":situation and question,\"o\":[4 options],\"a\":index of correct option,\"e\":one-sentence explanation}.",{cache:false});aiq=r.filter(function(x){return x&&x.o&&x.o.length>1})}catch(e){S.ai=false}}
+  if(aiq.length){var a=aiq.shift();q={t:"m",q:a.q,o:sh(a.o),a:a.o[a.a],e:a.e}}}
+ if(!q)q=mk();g.q=q;g.n++;show()}
+function show(){var q=g.q,b;
+ if(q.t=="m"||q.t=="f")b='<div class="tag">'+(q.t=="f"?"Fill in the blank":"Situation")+'</div><div class="q">'+q.q.replace("___","<b>&nbsp;&nbsp;?&nbsp;&nbsp;</b>")+'</div>'+q.o.map(function(o,k){return '<button class="opt" onclick="pick('+k+')">'+o+'</button>'}).join('');
+ else if(q.t=="t")b='<div class="tag">True or false</div><div class="q">'+q.q+'</div><button class="opt" onclick="tf(true)">True</button><button class="opt" onclick="tf(false)">False</button>';
+ else{var ts=sh(q.all);b='<div class="tag">Match it</div><div class="q">'+q.q+'</div>'+q.pairs.map(function(p,k){return '<div class="row"><span>'+p[1]+'</span><select id="s'+k+'"><option value="">Choose…</option>'+ts.map(function(x){return '<option>'+x+'</option>'}).join('')+'</select></div>'}).join('')+'<button class="go" id="chk" onclick="chk()">Check answers</button>'}
+ app.innerHTML='<div id="h">'+hud()+'</div><div class="card">'+b+'<div id="fb"></div></div>'}
+function lock(){document.querySelectorAll(".opt,select,#chk").forEach(function(e){e.disabled=true})}
+function pick(k){var bs=document.querySelectorAll(".opt"),q=g.q;lock();bs.forEach(function(e,j){if(q.o[j]==q.a)e.classList.add("ok")});if(q.o[k]!=q.a)bs[k].classList.add("no");res(q.o[k]==q.a)}
+function tf(v){var bs=document.querySelectorAll(".opt"),q=g.q;lock();bs[q.a?0:1].classList.add("ok");if(v!==q.a)bs[v?0:1].classList.add("no");res(v===q.a)}
+function chk(){var all=true;g.q.pairs.forEach(function(p,k){var s=document.getElementById("s"+k),c=s.value==p[0];s.classList.add(c?"ok":"no");if(!c)all=false});lock();res(all)}
+function res(c){var gain=0,x="";
+ if(c){gain=10+Math.min(g.st,5)*2;g.xp+=gain;g.st++;g.ok++;if(g.st>g.best)g.best=g.st;if(g.st%5==0&&g.hp<3){g.hp++;x=" ❤️ Life restored!"}}else{g.hp--;g.st=0}
+ document.getElementById("h").innerHTML=hud();
+ document.getElementById("fb").innerHTML='<div class="fb '+(c?"ok":"no")+'"><div class="f">'+(c?"Correct! +"+gain+" XP"+x:"Not quite")+'</div>'+g.q.e+'</div><button class="go" onclick="'+(g.hp<=0?"over()":"nxt()")+'">'+(g.hp<=0?"See results":"Next question")+'</button>';
+ document.getElementById("fb").scrollIntoView({block:"nearest"})}
+function over(){var p=g.ok/g.n,t=p>=.9?"Master Communicator 🏆":p>=.7?"Skilled Speaker 🎤":p>=.5?"Rising Communicator 🌱":"Keep practicing 📚";
+ app.innerHTML='<div class="card c"><div class="big">💔</div><h2>'+t+'</h2><p>'+g.xp+' XP · Level '+(Math.floor(g.xp/100)+1)+'<br>'+g.ok+' of '+g.n+' correct · best streak '+g.best+'</p><button class="go" onclick="start()">Play again</button><button class="go" onclick="home()">Change topic</button></div>'}
+home();
+try{if(window.claude&&claude.use)claude.use("sample").then(function(s){if(s){smp=s;home()}}).catch(function(){})}catch(e){}
+</script></body></html>
